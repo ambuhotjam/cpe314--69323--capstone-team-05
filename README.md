@@ -20,20 +20,18 @@ Our application, Restaurant Ordering \& Inventory Insights, is for staff of smal
 
 
 
-Table 2: Relationships and What They Mean
-Relationship	Type	Meaning
-RestaurantOrder → OrderItem	1:M	One order contains several ordered-item records.
-MenuItem → OrderItem	1:M	One menu item can appear in several orders.
-MenuItem → MenuItemIngredient	1:M	One menu item can require several ingredients.
-Ingredient → MenuItemIngredient	1:M	One ingredient can be used by several menu items.
-Combo → ComboComponent	1:M	One combo contains several component records.
-MenuItem → ComboComponent	1:M	One menu item can be used in several combo components.
-Combo → ComboComponent (as child)	1:M	One child combo can be used in several parent-combo components.
-Notes
-1:M means one-to-many.
-OrderItem links orders with menu items.
-MenuItemIngredient links menu items with ingredients.
-Combo Rules
-Each component points to exactly one menu item OR one child combo.
-Quantities must be positive.
-A combo must not contain itself, directly or indirectly.
+## Table 2: Relationships and what they mean
+
+| Relationship | Type | Meaning |
+| :--- | :---: | :--- |
+| RestaurantOrder to OrderItem | 1:M| One order contains several ordered-item records. |
+| MenuItem to OrderItem | 1:M | One menu item can appear in several orders. |
+| MenuItem to MenuItemIngredient | 1:M| One menu item can require several ingredients. |
+| Ingredient to MenuItemIngredient | 1:M | One ingredient can be used by several menu items. |
+| Combo to ComboComponent | 1:M | One combo contains several component records |
+| MenuItem to ComboComponent | 1:M | One menu item can be used in several combo components |
+| Combo to ComboComponent (as child) | 1:M | One child combo can be used in several parent-combo components |
+
+1:M means one-to-many. OrderItem links orders with menu items; MenuItemIngredient links menu items with ingredients.
+
+Combo rule: each component points to exactly one menu item OR one child combo. Quantities must be positive. A combo must not contain itself, directly or indirectly.
