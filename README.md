@@ -17,3 +17,23 @@ Our application, Restaurant Ordering \& Inventory Insights, is for staff of smal
 | **MenuItemIngredient** | **Keys:** `menu_item_id` PK/FK; `ingredient_id` PK/FK  <br> **Other fields:** `quantity_required` |
 | **Combo** | **Keys:** `combo_id` PK  <br> **Other fields:** `name` |
 | **ComboComponent** | **Keys:** `component_id` PK; `combo_id` FK; `menu_item_id` FK (nullable); `child_combo_id` FK (nullable)  <br> **Other fields:** `quantity` |
+
+
+
+Table 2: Relationships and What They Mean
+Relationship	Type	Meaning
+RestaurantOrder → OrderItem	1:M	One order contains several ordered-item records.
+MenuItem → OrderItem	1:M	One menu item can appear in several orders.
+MenuItem → MenuItemIngredient	1:M	One menu item can require several ingredients.
+Ingredient → MenuItemIngredient	1:M	One ingredient can be used by several menu items.
+Combo → ComboComponent	1:M	One combo contains several component records.
+MenuItem → ComboComponent	1:M	One menu item can be used in several combo components.
+Combo → ComboComponent (as child)	1:M	One child combo can be used in several parent-combo components.
+Notes
+1:M means one-to-many.
+OrderItem links orders with menu items.
+MenuItemIngredient links menu items with ingredients.
+Combo Rules
+Each component points to exactly one menu item OR one child combo.
+Quantities must be positive.
+A combo must not contain itself, directly or indirectly.
