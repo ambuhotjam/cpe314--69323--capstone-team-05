@@ -52,3 +52,21 @@ Check off which mandatory requirement each planned feature will satisfy:
 | Import a large historical order CSV in Task.call(); report progress and update UI on the JavaFX thread. | Concurrency |
 | Aggregate completed item quantities and completed order counts by hour; exclude cancelled orders. | Data Mining |
 | Labeled bar chart of item quantities sold and line chart of orders by hour. | Data Visualization |
+
+
+
+### 4. Task Split
+
+| Member | Primary Responsibility (this milestone) |
+| :--- | :--- |
+| Jamaica Ambuhot | OOD hierarchy and recursive combo pricing plan. |
+| Janine Ebrado | ER sketch and SQLite/JDBC data-layer plan. |
+| Josiela Yap | JavaFX screen sketch and event-handler plan. |
+| Vincent Hayag | Kitchen Queue, cancellation Stack and stock-flow plan. |
+| Kiro Del Rosario | TheMealDB integration and background CSV-import plan. |
+| Ben Justin Lajot | JUnit test cases, sales aggregation and chart plan. |
+
+
+### 5. Public API You Plan to Use
+
+TheMealDB provides real meal names and ingredient lists for staff to review and import into the restaurant menu.
