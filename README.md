@@ -35,3 +35,20 @@ Our application, Restaurant Ordering \& Inventory Insights, is for staff of smal
 1:M means one-to-many. OrderItem links orders with menu items; MenuItemIngredient links menu items with ingredients.
 
 Combo rule: each component points to exactly one menu item OR one child combo. Quantities must be positive. A combo must not contain itself, directly or indirectly.
+
+
+## 3. Feature Checklist
+
+Check off which mandatory requirement each planned feature will satisfy:
+
+| Planned Feature | Requirement(s) It Satisfies |
+| :--- | :--- |
+| MenuItem abstract class with Appetizer, MainCourse and Beverage subclasses; different preparation estimates; separate services. | Object-Oriented Design |
+| FIFO kitchen Queue, latest-pending-order Stack, and recursive total for combos nested at any depth; reject cycles. | Data Structure / Recursion |
+| At least 6 JUnit 5 tests: totals, invalid quantity, FIFO, cancellation, nested combos and insufficient stock. | Automated Testing |
+| Related SQLite tables; JDBC PreparedStatement CRUD and JOIN queries. | Data Modeling + Database |
+| Search TheMealDB and save selected meal names and real ingredient lists after staff review. | API Consumption |
+| JavaFX Place Order, Cancel Latest Pending Order, Search Recipe and Import History controls with handlers. | Event-Driven GUI |
+| Import a large historical order CSV in Task.call(); report progress and update UI on the JavaFX thread. | Concurrency |
+| Aggregate completed item quantities and completed order counts by hour; exclude cancelled orders. | Data Mining |
+| Labeled bar chart of item quantities sold and line chart of orders by hour. | Data Visualization |
