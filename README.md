@@ -70,3 +70,12 @@ Check off which mandatory requirement each planned feature will satisfy:
 ### 5. Public API You Plan to Use
 
 TheMealDB provides real meal names and ingredient lists for staff to review and import into the restaurant menu.
+
+
+### 6. Risks / Open Questions
+
+| RISKS | QUESTIONS |
+|---|---|
+| TheMealDB might not provide complete recipe information, or the internet might not work. | What should we do if recipe information is missing or is the internet unavailable? Can we use saved recipe data? |
+| The inventory might become incorrect if an order is cancelled after food preparation starts. | Should we allow order cancellation after food preparation has started? |
+| The application might freeze when processing many order records. | How can we prevent the application from freezing when processing order history? | 
