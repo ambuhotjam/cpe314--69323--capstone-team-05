@@ -29,22 +29,71 @@ Project Design Document
 
 <br>
 
-
 ## Table of Contents
 <img width="840" height="242" alt="image" src="https://github.com/user-attachments/assets/f3ca289e-f7eb-4858-b1eb-0d6b38160b73" />
 
 
+<h2>Revision History</h2>
 
-## Revision History
+<p><strong>Table 1: Revision history</strong></p>
 
-**Table 1: Revision history**
-
-| Version | Date | Author | Changes |
-|:---|:---|:---|:---|
-| 0.1 | <div style="padding-top: 0;">October 20, 2026<br><br><br>October 25, 2026</div> | <div style="padding-top: 0;">Group 5<br><br>**Ambuhot** - Introduction<br>**Ebrado** - ER Sketch<br>**Yap** - Feature Checklist<br>**Del Rosario** - Task Split<br>**Hayag** - The Public API<br>**Lajot** - Risk/Questions</div> | Initial draft<br><br>Completed the Week 8 project proposal, including the introduction, ER sketch, feature checklist, task split, public API, and risks/questions. |
-| 0.2 | October 26, 2026 | **Yap & Hayag** - Class Hierarchy Diagram/Description<br>**Ambuhot** - SRP Justification<br>**Ebrado** - Finalized ERD<br>**Del Rosario & Lajot** - Schema Description | Added Week 9 design and documentation sections, including the Class Hierarchy Diagram, SRP Justification, Finalized ERD, and Schema Description. |
-| 0.3 |  |  | Week 10 sections added |
-| 1.0 |  |  | Final compilation and polish — Week 11 |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center;">Version</th>
+      <th width="140">Date</th>
+      <th>Author</th>
+      <th>Changes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center" valign="top"><b>0.1</b></td>
+      <td valign="top" width="140">
+        October&nbsp;20,&nbsp;2026<br>
+        October&nbsp;25,&nbsp;2026
+      </td>
+      <td valign="top">
+        Group 5<br>
+        <b>Ambuhot</b> - Introduction<br>
+        <b>Ebrado</b> - ER Sketch<br>
+        <b>Yap</b> - Feature Checklist<br>
+        <b>Del Rosario</b> - Task Split<br>
+        <b>Hayag</b> - The Public API<br>
+        <b>Lajot</b> - Risk/Questions
+      </td>
+      <td valign="top">
+        Initial draft<br>
+        Completed the Week 8 project proposal, including the introduction, ER sketch, feature checklist, task split, public API, and risks/questions.
+      </td>
+    </tr>
+    <tr>
+      <td align="center" valign="top"><b>0.2</b></td>
+      <td valign="top" width="140">October&nbsp;26,&nbsp;2026</td>
+      <td valign="top">
+        <b>Yap &amp; Hayag</b> - Class Hierarchy Diagram/Description<br>
+        <b>Ambuhot</b> - SRP Justification<br>
+        <b>Ebrado</b> - Finalized ERD<br>
+        <b>Del Rosario &amp; Lajot</b> - Schema Description
+      </td>
+      <td valign="top">
+        Added Week 9 design and documentation sections, including the Class Hierarchy Diagram, SRP Justification, Finalized ERD, and Schema Description.
+      </td>
+    </tr>
+    <tr>
+      <td align="center"><b>0.3</b></td>
+      <td></td>
+      <td></td>
+      <td>Week 10 sections added</td>
+    </tr>
+    <tr>
+      <td align="center"><b>1.0</b></td>
+      <td></td>
+      <td></td>
+      <td>Final compilation and polish — Week 11</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Introduction & Project Overview
 The Restaurant Ordering & Inventory Insights is a JavaFX desktop application designed for small restaurants and campus canteens that need an efficient way to manage orders and ingredient inventory. The application will manage menu items, nested meal combos, and the kitchen order queue while integrating with TheMealDB to import real recipe information. It will use SQLite to store records and generate charts showing best-selling menu items and peak ordering hours, helping staff improve food preparation and inventory management.
