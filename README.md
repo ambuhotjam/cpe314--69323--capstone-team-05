@@ -33,17 +33,16 @@ Check off which mandatory requirement each planned feature will satisfy:
 
 
 
-### 4. Task Split
+## 4. Task Split
 
-| Member | Primary Responsibility (this milestone) |
-| :--- | :--- |
-| Jamaica Ambuhot | OOD hierarchy and recursive combo pricing plan. |
-| Janine Ebrado | ER sketch and SQLite/JDBC data-layer plan. |
-| Josiela Yap | JavaFX screen sketch and event-handler plan. |
-| Vincent Hayag | Kitchen Queue, cancellation Stack and stock-flow plan. |
-| Kiro Del Rosario | TheMealDB integration and background CSV-import plan. |
-| Ben Justin Lajot | JUnit test cases, sales aggregation and chart plan. |
-
+| Member | Primary Responsibility |
+|---|---|
+| Kiro Del Rosario - Team Leader | TheMealDB integration and background CSV-import plan. |
+| Jamaica Ambuhot - Developer 1 | OOD hierarchy and recursive combo pricing plan. |
+| Janine Ebrado - Developer 2 | ER sketch and SQLite/JDBC data-layer plan. |
+| Vincent Hayag - DB Admin | Kitchen Queue, cancellation Stack and stock-flow plan. |
+| Josiela Yap - UI (User Interface) | JavaFX screen sketch and event-handler plan. |
+| Ben Justin Lajot - QA (Quality Assurance) | JUnit test cases, sales aggregation and chart plan. |
 
 ### 5. Public API You Plan to Use
 
