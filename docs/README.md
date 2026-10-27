@@ -109,3 +109,17 @@ The Beverage class extends the MenuItem class and represents beverages offered b
 inherits the common menu-item information and behavior defined by its superclass while identifying
 items belonging to the beverage category. This maintains a consistent structure for managing different
 types of menu items.
+
+5. Combo (Concrete Subclass)
+The Combo class extends the MenuItem class and represents combinations of individual menu items or
+other combos. It maintains combo components, recursively calculates the total price of nested combos,
+validates component quantities, and prevents circular references. These responsibilities allow the
+application to support nested combos while maintaining valid component relationships and accurate
+price calculations.
+
+The class hierarchy helps organize the different types of menu items in the system. The MenuItem class
+serves as the parent class, while Appetizer, MainCourse, Beverage, and Combo represent the different
+menu categories. This setup allows the classes to share common information instead of repeating the
+same code. The Combo class can also handle combinations of menu items, including combos within
+other combos, and calculate their total prices. Overall, this structure makes the menu easier to manage
+and supports the system&#39;s ordering and pricing features.
