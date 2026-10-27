@@ -75,3 +75,37 @@ Table 1: Team members and proposed responsibilities
 | Vincent Hayag - DB Admin | Kitchen Queue, cancellation Stack and stock-flow plan. |
 | Josiela Yap - UI (User Interface) | JavaFX screen sketch and event-handler plan. |
 | Ben Justin Lajot - QA (Quality Assurance) | JUnit test cases, sales aggregation and chart plan. |
+
+## System Architecture &amp; Object-Oriented Design
+<img width="1536" height="1024" alt="w9 image" src="https://github.com/user-attachments/assets/3434b7a4-1d16-4221-a953-4759aa68da1a" />
+<p align="center">
+ <em>Figure 2: Class Diagram for Restaurant Menu Items</em>
+ </p>
+The class hierarchy diagram illustrates the inheritance relationships among the menu-related classes of
+the Restaurant Ordering &amp; Inventory Insights application. It consists of one abstract superclass,
+MenuItem, and four concrete subclasses: Appetizer, MainCourse, Beverage, and Combo. This structure
+organizes menu items according to their categories while promoting code reusability and
+maintainability.
+
+1. MenuItem (Abstract Superclass)
+The MenuItem class serves as the abstract superclass for all menu items in the application. It stores and
+validates common menu-item information and provides a shared structure for its subclasses. This design
+reduces code duplication and establishes a consistent way of representing menu items throughout the
+application.
+
+2. Appetizer (Concrete Subclass)
+The Appetizer class extends the MenuItem class and represents appetizer items offered by the
+restaurant. It inherits the common menu-item information and behavior defined by its superclass while
+identifying items belonging to the appetizer category. This allows appetizer items to be managed
+consistently with other menu categories.
+
+3. MainCourse (Concrete Subclass)
+The MainCourse class extends the MenuItem class and represents the main-course items available on
+the restaurant&#39;s menu. It inherits the common menu-item information and behavior defined by its
+superclass while distinguishing main-course items from appetizers, beverages, and combos.
+
+4. Beverage (Concrete Subclass)
+The Beverage class extends the MenuItem class and represents beverages offered by the restaurant. It
+inherits the common menu-item information and behavior defined by its superclass while identifying
+items belonging to the beverage category. This maintains a consistent structure for managing different
+types of menu items.
