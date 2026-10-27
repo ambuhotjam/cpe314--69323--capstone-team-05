@@ -123,3 +123,20 @@ menu categories. This setup allows the classes to share common information inste
 same code. The Combo class can also handle combinations of menu items, including combos within
 other combos, and calculate their total prices. Overall, this structure makes the menu easier to manage
 and supports the system&#39;s ordering and pricing features.
+
+## SRP Justification
+* MenuItem: Stores and validates common menu-item information. It does not manage the user interface or database operations.
+* Appetizer: Represents appetizer menu items and their category.
+* MainCourse: Represents main-course menu items and their category.
+* Beverage: Represents beverage menu items and their category.
+* Combo: Manages combo components, calculates nested combo prices recursively, and prevents invalid quantities and circular references.
+* RestaurantOrder: Stores the order ID, timestamp, and status and ensures that order-status transitions follow the defined rules.
+* KitchenQueue: Manages FIFO (First-In, First-Out) processing of kitchen orders.
+* OrderHistoryStack: Tracks recent orders and supports cancellation of the latest order that is still pending.
+* Database: Manages SQLite database connections and initializes the database schema.
+* MenuItemRepository: Handles saving, retrieving, and other database operations for menu items using parameterized JDBC statements.
+* DineSmartApp: Builds the JavaFX interface, handles user interactions, and delegates operations to the appropriate application services and repositories.
+
+Each class has a specific responsibility, separating menu management, combo pricing, order processing, database operations, and user-interface functions. This design reduces code duplication, improves testability, and makes the application easier to maintain. Changes to one part of the system can be made with less impact on other parts.
+The planned design will also assign clear responsibilities for inventory management, TheMealDB integration, and sales reporting to maintain separation between different parts of the system.
+
