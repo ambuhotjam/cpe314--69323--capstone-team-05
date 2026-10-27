@@ -29,30 +29,22 @@ Project Design Document
 
 <br>
 
-## Table of Contents
 
-```text
-Revision History ......................................... 3
-1. Introduction & Project Overview ....................... 4
-2. Preliminary ER Sketch & Team Roles .................... 5
-    Team Roles ........................................... 6
-3. System Architecture & Object-Oriented Design .......... 7
-    SRP Justification .................................... 7
-4. Data Model & Database Design .......................... 7
-    Schema Description ................................... 7
-```
+## Table of Contents
+<img width="840" height="242" alt="image" src="https://github.com/user-attachments/assets/f3ca289e-f7eb-4858-b1eb-0d6b38160b73" />
+
+
 
 ## Revision History
 
-Table 1: Revision history
+**Table 1: Revision history**
 
 | Version | Date | Author | Changes |
 |:---|:---|:---|:---|
-| 0.1 | October 20, 2026<br>October 25, 2026 | Group 5<br>**Ambuhot** - Introduction<br>**Ebrado** - ER Sketch<br>**Yap** - Feature Checklist<br>**Del Rosario** - Task Split<br>**Hayag** - The Public API<br>**Lajot** - Risk/Questions | Initial draft<br><br>Completed the Week 8 project proposal, including the introduction, ER sketch, feature checklist, task split, public API, and risks/questions. |
+| 0.1 | <div style="padding-top: 0;">October 20, 2026<br><br><br>October 25, 2026</div> | <div style="padding-top: 0;">Group 5<br><br>**Ambuhot** - Introduction<br>**Ebrado** - ER Sketch<br>**Yap** - Feature Checklist<br>**Del Rosario** - Task Split<br>**Hayag** - The Public API<br>**Lajot** - Risk/Questions</div> | Initial draft<br><br>Completed the Week 8 project proposal, including the introduction, ER sketch, feature checklist, task split, public API, and risks/questions. |
 | 0.2 | October 26, 2026 | **Yap & Hayag** - Class Hierarchy Diagram/Description<br>**Ambuhot** - SRP Justification<br>**Ebrado** - Finalized ERD<br>**Del Rosario & Lajot** - Schema Description | Added Week 9 design and documentation sections, including the Class Hierarchy Diagram, SRP Justification, Finalized ERD, and Schema Description. |
-| 0.3 | | | Week 10 sections added |
-| 1.0 | | | Final compilation and polish - Week 11 |
-
+| 0.3 |  |  | Week 10 sections added |
+| 1.0 |  |  | Final compilation and polish — Week 11 |
 
 ## Introduction & Project Overview
 The Restaurant Ordering & Inventory Insights is a JavaFX desktop application designed for small restaurants and campus canteens that need an efficient way to manage orders and ingredient inventory. The application will manage menu items, nested meal combos, and the kitchen order queue while integrating with TheMealDB to import real recipe information. It will use SQLite to store records and generate charts showing best-selling menu items and peak ordering hours, helping staff improve food preparation and inventory management.
@@ -77,9 +69,9 @@ Table 1: Team members and proposed responsibilities
 | Ben Justin Lajot - QA (Quality Assurance) | JUnit test cases, sales aggregation and chart plan. |
 
 ## System Architecture &amp; Object-Oriented Design
-<img width="1536" height="1024" alt="w9 image" src="https://github.com/user-attachments/assets/3434b7a4-1d16-4221-a953-4759aa68da1a" />
+<img width="974" height="337" alt="image" src="https://github.com/user-attachments/assets/75651d1e-3a62-40d6-a61c-e606a61fa6f2" />
 <p align="center">
- <em>Figure 2: Class Diagram for Restaurant Menu Items</em>
+ <em>Figure 1: Class Diagram for Restaurant Menu Items</em>
  </p>
 The class hierarchy diagram illustrates the inheritance relationships among the menu-related classes of
 the Restaurant Ordering &amp; Inventory Insights application. It consists of one abstract superclass,
