@@ -158,7 +158,7 @@ The Entity-Relationship (ER) diagram illustrates the database structure of the *
 | COMBOS | combo_id (INTEGER, PK)<br>name (TEXT) | Stores each meal combo and its name. |
 | COMBO_COMPONENTS | component_id (INTEGER, PK)<br>combo_id (INTEGER, FK)<br>menu_item_id (INTEGER, FK)<br>child_combo_id (INTEGER, FK)<br>quantity (INTEGER) | Stores the parts of a combo. Each row points to either a regular menu item or another combo, which allows nesting. |
 
-## Relationships
+**Table 2: Relationships and what they mean**
 
 | Relationship | Cardinality | Description |
 |---|---|---|
@@ -169,11 +169,13 @@ The Entity-Relationship (ER) diagram illustrates the database structure of the *
 | `MENU_ITEMS` included as `COMBO_COMPONENTS` | One-to-many (optional) | A component may reference a regular menu item through `menu_item_id`. |
 | `COMBOS` nested as `COMBO_COMPONENTS` | One-to-many (optional) | A component may instead reference another combo through `child_combo_id`, which allows combos inside combos at any depth. |
 
-## Design Rules and Constraints
+**Design Rules and Constraints**
 
-- Each `COMBO_COMPONENTS` row references exactly one of `menu_item_id` or `child_combo_id`; the other must be `NULL`. A foreign key cannot detect circular combo references, so the application rejects cycles when a component is added and totals the price of nested combos recursively. Quantities in `COMBO_COMPONENTS` and `ORDER_ITEMS` must be positive. Invalid quantities are rejected before they are saved.
-- `ORDER_ITEMS` stores `unit_price_at_order` so that past orders and sales reports stay correct after a menu price changes. The status in `RESTAURANT_ORDERS` tracks whether an order is pending, completed, or cancelled. It supports cancellation of the latest pending order, and cancelled orders are excluded from sales results. `ordered_at` is stored as `TEXT` in a date-time format so orders can be grouped by hour.
-- `MENU_ITEMS.api_meal_id` and the `MENU_ITEM_INGREDIENTS` rows are filled when staff review and import a meal from TheMealDB API. They remain empty or are entered manually for items created by hand. Before an order is accepted, the required stock is checked against `INGREDIENTS.stock_quantity`. The order is rejected when stock is insufficient.
+Each `COMBO_COMPONENTS` row references exactly one of `menu_item_id` or `child_combo_id`; the other must be `NULL`. A foreign key cannot detect circular combo references, so the application rejects cycles when a component is added and totals the price of nested combos recursively. Quantities in `COMBO_COMPONENTS` and `ORDER_ITEMS` must be positive. Invalid quantities are rejected before they are saved.
+
+`ORDER_ITEMS` stores `unit_price_at_order` so that past orders and sales reports stay correct after a menu price changes. The status in `RESTAURANT_ORDERS` tracks whether an order is pending, completed, or cancelled. It supports cancellation of the latest pending order, and cancelled orders are excluded from sales results. `ordered_at` is stored as `TEXT` in a date-time format so orders can be grouped by hour.
+
+`MENU_ITEMS.api_meal_id` and the `MENU_ITEM_INGREDIENTS` rows are filled when staff review and import a meal from TheMealDB API. They remain empty or are entered manually for items created by hand. Before an order is accepted, the required stock is checked against `INGREDIENTS.stock_quantity`. The order is rejected when stock is insufficient.
 
 Overall, this database design supports menu management, order processing, ingredient inventory tracking, recipe integration through the TheMealDB API, and sales analysis based on order timestamps. Sales queries join `ORDER_ITEMS`, `RESTAURANT_ORDERS`, and `MENU_ITEMS` to total completed item quantities and count completed orders by hour. It provides the relational foundation for the application's Java implementation using JDBC and SQLite.
 
