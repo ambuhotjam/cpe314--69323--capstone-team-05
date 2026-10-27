@@ -52,3 +52,8 @@ Table 1: Revision history
 | 0.2 | October 26, 2026 | **Yap & Hayag** - Class Hierarchy Diagram/Description<br>**Ambuhot** - SRP Justification<br>**Ebrado** - Finalized ERD<br>**Del Rosario & Lajot** - Schema Description | Added Week 9 design and documentation sections, including the Class Hierarchy Diagram, SRP Justification, Finalized ERD, and Schema Description. |
 | 0.3 | | | Week 10 sections added |
 | 1.0 | | | Final compilation and polish - Week 11 |
+
+
+## Introduction & Project Overview
+The Restaurant Ordering & Inventory Insights is a JavaFX desktop application designed for small restaurants and campus canteens that need an efficient way to manage orders and ingredient inventory. The application will manage menu items, nested meal combos, and the kitchen order queue while integrating with TheMealDB to import real recipe information. It will use SQLite to store records and generate charts showing best-selling menu items and peak ordering hours, helping staff improve food preparation and inventory management.
+
