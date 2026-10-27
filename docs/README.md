@@ -57,3 +57,21 @@ Table 1: Revision history
 ## Introduction & Project Overview
 The Restaurant Ordering & Inventory Insights is a JavaFX desktop application designed for small restaurants and campus canteens that need an efficient way to manage orders and ingredient inventory. The application will manage menu items, nested meal combos, and the kitchen order queue while integrating with TheMealDB to import real recipe information. It will use SQLite to store records and generate charts showing best-selling menu items and peak ordering hours, helping staff improve food preparation and inventory management.
 
+## Preliminary ER Sketch & Team Roles
+<img width="4008" height="3168" alt="image" src="https://github.com/user-attachments/assets/3ec183e8-4a63-4e80-bec8-cbe5d00a00a3" />
+<p align="center">
+  <em>Figure 1: Restaurant Ordering & Inventory System Diagram</em>
+</p>
+
+## Team Roles
+
+Table 1: Team members and proposed responsibilities
+
+| Member | Role |
+|---|---|
+| Kiro Del Rosario - Team Leader | TheMealDB integration and background CSV-import plan. |
+| Jamaica Ambuhot - Developer 1 | OOD hierarchy and recursive combo pricing plan. |
+| Janine Ebrado - Developer 2 | ER sketch and SQLite/JDBC data-layer plan. |
+| Vincent Hayag - DB Admin | Kitchen Queue, cancellation Stack and stock-flow plan. |
+| Josiela Yap - UI (User Interface) | JavaFX screen sketch and event-handler plan. |
+| Ben Justin Lajot - QA (Quality Assurance) | JUnit test cases, sales aggregation and chart plan. |
