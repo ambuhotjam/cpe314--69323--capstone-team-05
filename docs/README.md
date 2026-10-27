@@ -140,3 +140,21 @@ and supports the system&#39;s ordering and pricing features.
 Each class has a specific responsibility, separating menu management, combo pricing, order processing, database operations, and user-interface functions. This design reduces code duplication, improves testability, and makes the application easier to maintain. Changes to one part of the system can be made with less impact on other parts.
 The planned design will also assign clear responsibilities for inventory management, TheMealDB integration, and sales reporting to maintain separation between different parts of the system.
 
+## Schema Description
+
+**Entity-Relationship Diagram Description**
+
+The Entity-Relationship (ER) diagram illustrates the database structure of the **Restaurant Ordering & Inventory Insights** application. The schema is implemented in SQLite and accessed through JDBC using PreparedStatement. It consists of seven tables: MENU_ITEMS, INGREDIENTS, MENU_ITEM_INGREDIENTS, RESTAURANT_ORDERS, ORDER_ITEMS, COMBOS, and COMBO_COMPONENTS. They are linked through primary keys (PKs) and foreign keys (FKs) and fall into three groups: menu and recipe data, order data, and combo data.
+
+**Table 1: Entities and their key Attributes**
+
+| Table | Columns (type) | Purpose |
+|:---|:---|:---|
+| MENU_ITEMS | menu_item_id (INTEGER, PK)<br>name (TEXT)<br>item_type (TEXT)<br>price (REAL)<br>base_prep_minutes (INTEGER)<br>api_meal_id (TEXT) | Stores each dish or drink on the menu. item_type holds the category (Appetizer, MainCourse or Beverage), base_prep_minutes is the preparation estimate, and api_meal_id links an imported item to its TheMealDB recipe. |
+| INGREDIENTS | ingredient_id (INTEGER, PK)<br>name (TEXT)<br>stock_quantity (REAL)<br>stock_unit (TEXT) | Keeps the ingredient inventory: what is in stock and in which unit. |
+| MENU_ITEM_INGREDIENTS | menu_item_id (INTEGER, PK, FK)<br>ingredient_id (INTEGER, PK, FK)<br>quantity_required (REAL)<br>measure (TEXT) | Junction table for the recipe of each menu item. quantity_required is the amount used per serving, and measure keeps the measure text from the recipe. |
+| RESTAURANT_ORDERS | order_id (TEXT, PK)<br>ordered_at (TEXT)<br>status (TEXT) | Stores one record per customer order with its timestamp and current status. |
+| ORDER_ITEMS | order_item_id (INTEGER, PK)<br>order_id (TEXT, FK)<br>menu_item_id (INTEGER, FK)<br>quantity (INTEGER)<br>unit_price_at_order (REAL) | Stores the lines of an order: which menu item, how many, and the unit price when the order was placed. |
+| COMBOS | combo_id (INTEGER, PK)<br>name (TEXT) | Stores each meal combo and its name. |
+| COMBO_COMPONENTS | component_id (INTEGER, PK)<br>combo_id (INTEGER, FK)<br>menu_item_id (INTEGER, FK)<br>child_combo_id (INTEGER, FK)<br>quantity (INTEGER) | Stores the parts of a combo. Each row points to either a regular menu item or another combo, which allows nesting. |
+
