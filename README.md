@@ -47,7 +47,9 @@ Check off which mandatory requirement each planned feature will satisfy:
 
 ### 5. Public API You Plan to Use
 
-TheMealDB provides real meal names and ingredient lists for staff to review and import into the restaurant menu.
+TheMealDB (https://www.themealdb.com/api.php): a free recipe API that provides meal names,
+categories, cooking instructions, images, and ingredient lists with measures. We will use the shared free
+test key “1” (no signup) to seed our menu items and their ingredients.
 
 
 ### 6. Risks / Open Questions
