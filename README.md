@@ -53,8 +53,23 @@ test key “1” (no signup) to seed our menu items and their ingredients.
 
 ### 6. Risks / Open Questions
 
-| RISKS | QUESTIONS |
-|---|---|
-| TheMealDB might not provide complete recipe information, or the internet might not work. | What should we do if recipe information is missing or is the internet unavailable? Can we use saved recipe data? |
-| The inventory might become incorrect if an order is cancelled after food preparation starts. | Should we allow order cancellation after food preparation has started? |
-| The application might freeze when processing many order records. | How can we prevent the application from freezing when processing order history? | 
+| No. | Risks | Questions |
+| --- | --- | --- |
+| 1 | TheMealDB API failure | What will happen if TheMealDB API is unavailable? |
+| 2 | Internet connection failure | Can the system still work without internet? |
+| 3 | Incorrect inventory updates | How will you prevent incorrect ingredient stock quantities? |
+| 4 | Insufficient ingredients | What happens if there is not enough stock for an order? |
+| 5 | Circular combo references | How will you prevent a combo from containing itself indirectly? |
+| 6 | Incorrect combo pricing | How will you calculate the price of nested combos accurately? |
+| 7 | Database corruption | What will you do if the SQLite database becomes corrupted? |
+| 8 | Data loss | How will you back up and restore restaurant records? |
+| 9 | Invalid user input | How will the system handle negative or zero quantities? |
+| 10 | Incorrect sales reports | How will you ensure that sales charts display accurate results? |
+| 11 | Cancelled orders | How will you ensure cancelled orders are excluded from sales reports? |
+| 12 | Menu price changes | What happens to previous orders when a menu item's price changes? |
+| 13 | Duplicate recipe imports | How will you prevent the same recipe from being imported more than once? |
+| 14 | Application crash | What happens if the application crashes while saving an order? |
+| 15 | Incorrect order processing | How will you ensure that kitchen orders follow FIFO (First-In, First-Out)? |
+| 16 | Incorrect order cancellation | How will you prevent completed orders from being cancelled accidentally? |
+| 17 | Database query errors | How will you prevent invalid or unsafe database operations? |
+| 18 | Testing failures | How will you verify that each feature works correctly before deployment? |
