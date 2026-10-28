@@ -128,24 +128,24 @@ MenuItem, and four concrete subclasses: Appetizer, MainCourse, Beverage, and Com
 organizes menu items according to their categories while promoting code reusability and
 maintainability.
 
-1. MenuItem (Abstract Superclass)
+1. MenuItem (Abstract Superclass):
 The MenuItem class serves as the abstract superclass for all menu items in the application. It stores and
 validates common menu-item information and provides a shared structure for its subclasses. This design
 reduces code duplication and establishes a consistent way of representing menu items throughout the
 application.
 
-2. Appetizer (Concrete Subclass)
+2. Appetizer (Concrete Subclass):
 The Appetizer class extends the MenuItem class and represents appetizer items offered by the
 restaurant. It inherits the common menu-item information and behavior defined by its superclass while
 identifying items belonging to the appetizer category. This allows appetizer items to be managed
 consistently with other menu categories.
 
-3. MainCourse (Concrete Subclass)
+3. MainCourse (Concrete Subclass):
 The MainCourse class extends the MenuItem class and represents the main-course items available on
 the restaurant&#39;s menu. It inherits the common menu-item information and behavior defined by its
 superclass while distinguishing main-course items from appetizers, beverages, and combos.
 
-4. Beverage (Concrete Subclass)
+4. Beverage (Concrete Subclass):
 The Beverage class extends the MenuItem class and represents beverages offered by the restaurant. It
 inherits the common menu-item information and behavior defined by its superclass while identifying
 items belonging to the beverage category. This maintains a consistent structure for managing different
