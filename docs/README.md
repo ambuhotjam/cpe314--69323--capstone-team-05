@@ -151,7 +151,7 @@ inherits the common menu-item information and behavior defined by its superclass
 items belonging to the beverage category. This maintains a consistent structure for managing different
 types of menu items.
 
-5. Combo (Concrete Subclass)
+5. Combo (Concrete Subclass):
 The Combo class extends the MenuItem class and represents combinations of individual menu items or
 other combos. It maintains combo components, recursively calculates the total price of nested combos,
 validates component quantities, and prevents circular references. These responsibilities allow the
