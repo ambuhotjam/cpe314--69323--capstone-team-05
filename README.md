@@ -14,10 +14,8 @@ The Restaurant Ordering & Inventory Insights is a JavaFX desktop application des
 
 
 
+## Feature Checklist
 
-## 3. Feature Checklist
-
-Check off which mandatory requirement each planned feature will satisfy:
 
 | Planned Feature | Requirement(s) It Satisfies |
 | :--- | :--- |
@@ -33,7 +31,7 @@ Check off which mandatory requirement each planned feature will satisfy:
 
 
 
-## 4. Task Split
+## Task Split
 
 | Member | Primary Responsibility |
 |---|---|
@@ -44,14 +42,14 @@ Check off which mandatory requirement each planned feature will satisfy:
 | Josiela Yap - UI (User Interface) | JavaFX screen sketch and event-handler plan. |
 | Ben Justin Lajot - QA (Quality Assurance) | JUnit test cases, sales aggregation and chart plan. |
 
-### 5. Public API You Plan to Use
+## Public API You Plan to Use
 
 TheMealDB (https://www.themealdb.com/api.php): a free recipe API that provides meal names,
 categories, cooking instructions, images, and ingredient lists with measures. We will use the shared free
 test key “1” (no signup) to seed our menu items and their ingredients.
 
 
-### 6. Risks / Open Questions
+## Risks / Open Questions
 
 | No. | Risks | Questions |
 | --- | --- | --- |
@@ -73,3 +71,15 @@ test key “1” (no signup) to seed our menu items and their ingredients.
 | 16 | Incorrect order cancellation | How will you prevent completed orders from being cancelled accidentally? |
 | 17 | Database query errors | How will you prevent invalid or unsafe database operations? |
 | 18 | Testing failures | How will you verify that each feature works correctly before deployment? |
+
+# cpe314--69323--capstone-team-05
+CPE 314 Capstone Project E — Restaurant Ordering &amp; Inventory Insights
+
+| Members          | Roles       |
+|------------------|-------------|
+| Kiro Del Rosario | Leader      |
+| Janine Ebrado    | Developer 1 |
+| Jamaica Ambuhot  | Developer 2 |
+| Josiela Yap      | UI          |
+| Vincent Hayag    | DB Admin    |
+| Ben Justin Lajot | QA          |
