@@ -1,10 +1,10 @@
 | **Group Name / No.:**        | Group 5                                                                                                                                  |
 |:-----------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------|
-| **Members:**                 | Jamaica Ambuhot - Developer 1                                                                                                            |
-|                              | Janine Ebrado - Developer 2                                                                                                              |
-|                              | Josiela Yap - UI (User Interface)                                                                                                        |
+| **Members:**                 | Kiro Del RosarioJamaica Ambuhot - Team Leader                                                                                                           |
+|                              | Jamaica Ambuhot - Developer 1                                                                                                             |
+|                              | Janine Ebrado - Developer 2                                                                                                      |
 |                              | Vincent Hayag - DB Admin                                                                                                                 |
-|                              | Kiro Del Rosario - Team Leader                                                                                                           |
+|                              | Josiela Yap - UI (User Interface)                                                                                                           |
 |                              | Ben Justin Lajot - QA (Quality Assurance)                                                                                                |
 | **Repository URL:**          | [https://github.com/ambuhotjam/cpe314--69323--capstone-team-05.git](https://github.com/ambuhotjam/cpe314--69323--capstone-team-05.git)   |
 | **Theme:**                   | Restaurant Ordering & Inventory Insights                                                                                                 |
@@ -20,9 +20,11 @@ Revision History ---------------------------------------------------------------
 
 **1. Introduction & Project Overview--------------------------------------------------------------------------------------------------------------1**
 
-**2. Preliminary ER Sketch & Team Roles ---------------------------------------------------------------------------------------------------------2**<br>
+**2. Preliminary ER Sketch, Feature Checklist & Team Roles ------------------------------------------------------------------------------------2**<br>
 &nbsp;&nbsp;&nbsp;&nbsp;2.1 Preliminary Entity-Relationship (ER) Sketch------------------------------------------------------------------------------------------------2<br>
-&nbsp;&nbsp;&nbsp;&nbsp;2.2 Team Roles and Responsibilities------------------------------------------------------------------------------------------------------------3
+&nbsp;&nbsp;&nbsp;&nbsp;2.2 Feature Checklist----------------------------------------------------------------------------------------------------------------------------3     
+&nbsp;&nbsp;&nbsp;&nbsp;2.3 Team Roles and Responsibilities------------------------------------------------------------------------------------------------------------3
+
 
 **3. System Architecture & Object-Oriented Design---------------------------------------------------------------------------------------------4**<br>
 &nbsp;&nbsp;&nbsp;&nbsp;3.1 System Architecture Overview -------------------------------------------------------------------------------------------------------------4<br>
@@ -38,25 +40,21 @@ Revision History ---------------------------------------------------------------
 &nbsp;&nbsp;&nbsp;&nbsp;4.5 SQLite Database Structure -----------------------------------------------------------------------------------------------------------------12
 
 
-## ONE-PARAGRAPH PITCH
+## 1. Introduction & Project Overview
 
 The Restaurant Ordering & Inventory Insights is a JavaFX desktop application designed for small restaurants and campus canteens that need an efficient way to manage orders and ingredient inventory. The application will manage menu items, nested meal combos, and the kitchen order queue while integrating with TheMealDB to import real recipe information. It will use SQLite to store records and generate charts showing best-selling menu items and peak ordering hours, helping staff improve food preparation and inventory management.
 
 
 
-## ENTITY-RELATIONSHIP SKETCH
+## 2. Preliminary ER Sketch & Team Roles
 
-
+### 2.1 Preliminary Entity-Relationship (ER) Sketch
 <img width="4008" height="3168" alt="image" src="https://github.com/user-attachments/assets/d84a0066-fac9-4fba-89e4-9881149f5ac2" />
 <p align="center">
   <em>Figure 1: Restaurant Ordering & Inventory System Diagram</em>
 </p>
 
-
-
-## Feature Checklist
-
-
+### 2.2 Feature Checklist
 | Planned Feature | Requirement(s) It Satisfies |
 | :--- | :--- |
 | MenuItem abstract class with Appetizer, MainCourse and Beverage subclasses; different preparation estimates; separate services. | Object-Oriented Design |
@@ -70,9 +68,7 @@ The Restaurant Ordering & Inventory Insights is a JavaFX desktop application des
 | Labeled bar chart of item quantities sold and line chart of orders by hour. | Data Visualization |
 
 
-
-## Task Split
-
+### 2.3 Team Roles and Responsibilities
 | Member | Primary Responsibility |
 |---|---|
 | Kiro Del Rosario - Team Leader | TheMealDB integration and background CSV-import plan. |
@@ -82,44 +78,6 @@ The Restaurant Ordering & Inventory Insights is a JavaFX desktop application des
 | Josiela Yap - UI (User Interface) | JavaFX screen sketch and event-handler plan. |
 | Ben Justin Lajot - QA (Quality Assurance) | JUnit test cases, sales aggregation and chart plan. |
 
-## Public API You Plan to Use
-
-TheMealDB (https://www.themealdb.com/api.php): a free recipe API that provides meal names,
-categories, cooking instructions, images, and ingredient lists with measures. We will use the shared free
-test key “1” (no signup) to seed our menu items and their ingredients.
 
 
-## Risks / Open Questions
 
-| No. | Risks | Questions |
-| --- | --- | --- |
-| 1 | TheMealDB API failure | What will happen if TheMealDB API is unavailable? |
-| 2 | Internet connection failure | Can the system still work without internet? |
-| 3 | Incorrect inventory updates | How will you prevent incorrect ingredient stock quantities? |
-| 4 | Insufficient ingredients | What happens if there is not enough stock for an order? |
-| 5 | Circular combo references | How will you prevent a combo from containing itself indirectly? |
-| 6 | Incorrect combo pricing | How will you calculate the price of nested combos accurately? |
-| 7 | Database corruption | What will you do if the SQLite database becomes corrupted? |
-| 8 | Data loss | How will you back up and restore restaurant records? |
-| 9 | Invalid user input | How will the system handle negative or zero quantities? |
-| 10 | Incorrect sales reports | How will you ensure that sales charts display accurate results? |
-| 11 | Cancelled orders | How will you ensure cancelled orders are excluded from sales reports? |
-| 12 | Menu price changes | What happens to previous orders when a menu item's price changes? |
-| 13 | Duplicate recipe imports | How will you prevent the same recipe from being imported more than once? |
-| 14 | Application crash | What happens if the application crashes while saving an order? |
-| 15 | Incorrect order processing | How will you ensure that kitchen orders follow FIFO (First-In, First-Out)? |
-| 16 | Incorrect order cancellation | How will you prevent completed orders from being cancelled accidentally? |
-| 17 | Database query errors | How will you prevent invalid or unsafe database operations? |
-| 18 | Testing failures | How will you verify that each feature works correctly before deployment? |
-
-# cpe314--69323--capstone-team-05
-CPE 314 Capstone Project E — Restaurant Ordering &amp; Inventory Insights
-
-| Members          | Roles       |
-|------------------|-------------|
-| Kiro Del Rosario | Leader      |
-| Janine Ebrado    | Developer 1 |
-| Jamaica Ambuhot  | Developer 2 |
-| Josiela Yap      | UI          |
-| Vincent Hayag    | DB Admin    |
-| Ben Justin Lajot | QA          |
