@@ -1,0 +1,9 @@
+# Maven build output
+target/
+
+# Local SQLite databases (created by the application at runtime)
+*.db
+*.db-shm
+*.db-wal
+
+# Local IDE metadata is optional; keep existing project files if already tracked
