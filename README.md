@@ -1,6 +1,54 @@
-1\. One-Paragraph Pitch
 
-Our application, Restaurant Ordering \& Inventory Insights, is for staff of small restaurants and campus canteens. It will manage menu items, customer orders, the kitchen queue and ingredient stock. Staff can import real recipes, create nested meal combos and cancel the latest eligible pending order. Sales charts will show best-selling dishes and busy ordering hours to help staff plan stock and preparation.
+## 5. API Integration Design
 
+DineSmart uses **TheMealDB API**, a free public REST API that provides food recipes, meal categories, ingredients, cooking instructions, and meal images. It is integrated into the Recipe Discovery feature, allowing restaurant administrators to search for recipes, view their details, and import selected recipes into the system.
 
+**API Base URL:**  
+https://www.themealdb.com/api/json/v1/1/
 
+**Official API Documentation:**  
+https://www.themealdb.com/api.php
+
+The application uses the development test key `1`.
+
+### 5.1 API Endpoints Used
+
+1. **Search Meal by Name – `search.php?s={meal_name}`**  
+   Searches for recipes based on the meal name entered by the administrator and retrieves detailed meal information.
+
+2. **Filter Meals by Category – `filter.php?c={category}`**  
+   Retrieves meals belonging to a selected category, such as Main Course or Starter. The results include the meal ID, name, and thumbnail image.
+
+3. **Lookup Meal by ID – `lookup.php?i={meal_id}`**  
+   Retrieves the complete recipe information of a selected meal using its unique ID, including ingredients, measurements, cooking instructions, category, and cuisine origin.
+
+### 5.2 JSON Response Structure
+
+TheMealDB returns data in JSON format under a `meals` array. Each meal object contains fields such as:
+
+- `idMeal` — Meal ID
+- `strMeal` — Meal name
+- `strCategory` — Meal category
+- `strArea` — Cuisine origin
+- `strInstructions` — Cooking instructions
+- `strMealThumb` — Meal image URL
+- `strIngredient1` to `strIngredient20` — Ingredients
+- `strMeasure1` to `strMeasure20` — Ingredient measurements
+
+If no matching meal is found, the API may return a null value for the `meals` array.
+
+### 5.3 JSON Parsing and Data Usage
+
+DineSmart uses Java's `HttpClient` to send GET requests to TheMealDB API and receive JSON responses. The `org.json` library, specifically `JSONObject` and `JSONArray`, is used to parse the response and extract the required meal information.
+
+The extracted data is converted into `MealRecipe` objects, including the recipe details and up to 20 ingredient and measurement pairs. Empty ingredient entries are ignored.
+
+The retrieved information is displayed in the Recipe Discovery interface, where administrators can search, browse, and review recipes.
+
+When a recipe is selected for import, DineSmart retrieves its complete details when necessary and saves the recipe and its ingredients into the local SQLite database through `MealRecipeRepository`.
+
+### 5.4 Meaningful Integration in the Application
+
+TheMealDB API makes DineSmart more efficient by allowing administrators to discover recipes and import ingredients without manually entering all recipe information.
+
+The integration connects external recipe data with the application's local SQLite database and menu management feature, making recipe discovery and menu preparation more convenient.
