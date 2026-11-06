@@ -52,3 +52,21 @@ When a recipe is selected for import, DineSmart retrieves its complete details w
 TheMealDB API makes DineSmart more efficient by allowing administrators to discover recipes and import ingredients without manually entering all recipe information.
 
 The integration connects external recipe data with the application's local SQLite database and menu management feature, making recipe discovery and menu preparation more convenient.
+
+
+## 7. Data Mining and & Visualization Design
+
+DineSmart performs data aggregation and frequency analysis to summarize restaurant operations and present useful information through its dashboard. It collects data from the database, groups related records, and calculates counts or quantities to identify trends and patterns.
+
+The application uses three main data visualizations:
+
+### 1. Menu Category Frequency – Bar Chart
+
+The application retrieves menu items from the database and groups them according to their categories: Appetizer, Main Course, Beverage, and Combo. It uses the SQL COUNT(*) function with GROUP BY to count how many menu items belong to each category.
+* Chart used: Bar Chart.
+* Why chosen: A bar chart was chosen because the data consists of separate categories, such as Appetizer, Main Course, Beverage, and Combo. These categories are independent of one another, so comparing their frequencies                using bars is straightforward.
+   * Each bar represents one menu category.
+   *  The height of each bar indicates the number of menu items in that category.
+   *  Users can quickly compare which category has the most and fewest menu items.
+   *  Differences between categories are easy to recognize because the bars share the same measurement scale.
+
