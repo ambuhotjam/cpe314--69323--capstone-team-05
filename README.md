@@ -70,4 +70,27 @@ We use the `countByItemType()` method in `MenuItemRepository.java` to count the 
    *  The height of each bar indicates the number of menu items in that category.
    *  Users can quickly compare which category has the most and fewest menu items.
    *  Differences between categories are easy to recognize because the bars share the same measurement scale.
+### 2. Hourly Order Frequency – Line Chart
+
+We use the `getOrdersByHour()` method in `OrderRepository.java` to group restaurant orders according to the hour they were placed. This helps identify the busiest ordering hours. We also use `getPeakOrderingHour()` to determine which hour has the highest number of orders.
+
+- Chart used: Line Chart.
+- Why chosen: A line chart was chosen because the data represents order frequency across different hours of the day. Time follows a natural sequence, making it suitable for displaying changes from one hour to the next.
+  - The horizontal axis represents the hours of the day.
+  - The vertical axis represents the number of orders.
+  - Connecting the data points helps users see whether order activity increases or decreases throughout the day.
+  - Peaks and drops are easier to identify, helping restaurant staff recognize busy and slow periods.
+### 3. Best-Selling Foods and Beverages – Bar Chart
+
+We use the `findBestSellers()` method in `OrderRepository.java` to analyze completed orders and calculate the total quantities sold for each food and beverage item. It groups the ordered items by their names and ranks them according to their total quantities sold. This helps identify which food and beverage products are the best-selling and least-selling items, allowing restaurant management to understand customer preferences and make better decisions about menu planning and inventory.
+
+- Chart used: Bar Chart.
+- Why chosen: A bar chart was chosen because the application compares the quantities sold for different food and beverage items. Each menu item is a separate product, and the goal is to determine which products sell the most.
+  - Each bar represents an individual menu item.
+  - The height of the bar represents its total quantity sold in completed orders.
+  - Different colors distinguish food items (green) from beverages (orange).
+  - Users can easily compare sales performance and identify the best-selling and least-selling products.
+## Summary
+
+DineSmart uses bar charts when the objective is to compare quantities among different groups or products, and a line chart when the objective is to understand how values change over time. The selected chart types make the dashboard easier to interpret and help restaurant staff make informed decisions about menu management, inventory planning, and business operations.
 
