@@ -71,83 +71,125 @@ The database consists of eight application tables:
 
 These tables support menu management, ingredient records, customer orders, and meal combo management. Primary keys (PKs) uniquely identify records, while foreign keys (FKs) establish relationships between related tables.
 
-### Finalized Entity-Relationship Diagram
+
+## 4.1 Finalized Entity-Relationship Diagram (ERD)
+
+**Figure 3: Finalized Entity-Relationship Diagram for DineSmart**
+
+The following diagram illustrates the eight application database tables, their attributes, primary keys, foreign keys, and relationships.
 
 ```mermaid
-erDiagram
-    MENU_ITEMS {
-        INTEGER menu_item_id PK
-        TEXT name
-        TEXT item_type
-        REAL price
-        INTEGER base_prep_minutes
-        TEXT api_meal_id
-    }
+flowchart TB
 
-    INGREDIENTS {
-        INTEGER ingredient_id PK
-        TEXT name
-        REAL stock_quantity
-        TEXT stock_unit
-    }
+    subgraph MAIN["DINSMART DATABASE ENTITIES"]
 
-    MENU_ITEM_INGREDIENTS {
-        INTEGER menu_item_id PK,FK
-        INTEGER ingredient_id PK,FK
-        REAL quantity_required
-        TEXT measure
-    }
+        direction TB
 
-    RESTAURANT_ORDERS {
-        TEXT order_id PK
-        TEXT ordered_at
-        TEXT status
-        TEXT customer_name
-    }
+        ING["INGREDIENTS<br/>────────────<br/>INTEGER ingredient_id (PK)<br/>TEXT name<br/>REAL stock_quantity<br/>TEXT stock_unit"]
 
-    ORDER_ITEMS {
-        INTEGER order_item_id PK
-        TEXT order_id FK
-        INTEGER menu_item_id FK
-        INTEGER quantity
-        REAL unit_price_at_order
-    }
+        MENU["MENU_ITEMS<br/>────────────<br/>INTEGER menu_item_id (PK)<br/>TEXT name<br/>TEXT item_type<br/>REAL price<br/>INTEGER base_prep_minutes<br/>TEXT api_meal_id"]
 
-    ORDER_COMBO_ITEMS {
-        INTEGER order_combo_item_id PK
-        TEXT order_id FK
-        INTEGER combo_id FK
-        INTEGER quantity
-        REAL unit_price_at_order
-    }
+        ORD["RESTAURANT_ORDERS<br/>────────────<br/>TEXT order_id (PK)<br/>TEXT ordered_at<br/>TEXT status<br/>TEXT customer_name"]
 
-    COMBOS {
-        INTEGER combo_id PK
-        TEXT name
-        REAL discount_percent
-    }
+        COM["COMBOS<br/>────────────<br/>INTEGER combo_id (PK)<br/>TEXT name<br/>REAL discount_percent"]
 
-    COMBO_COMPONENTS {
-        INTEGER component_id PK
-        INTEGER combo_id FK
-        INTEGER menu_item_id FK
-        INTEGER child_combo_id FK
-        INTEGER quantity
-    }
+        MI["MENU_ITEM_INGREDIENTS<br/>────────────<br/>INTEGER menu_item_id (PK, FK)<br/>INTEGER ingredient_id (PK, FK)<br/>REAL quantity_required<br/>TEXT measure"]
 
-    MENU_ITEMS ||--o{ MENU_ITEM_INGREDIENTS : uses
-    INGREDIENTS ||--o{ MENU_ITEM_INGREDIENTS : required_by
+        OI["ORDER_ITEMS<br/>────────────<br/>INTEGER order_item_id (PK)<br/>TEXT order_id (FK)<br/>INTEGER menu_item_id (FK)<br/>INTEGER quantity<br/>REAL unit_price_at_order"]
 
-    RESTAURANT_ORDERS ||--o{ ORDER_ITEMS : contains
-    MENU_ITEMS ||--o{ ORDER_ITEMS : ordered_as
+        OCI["ORDER_COMBO_ITEMS<br/>────────────<br/>INTEGER order_combo_item_id (PK)<br/>TEXT order_id (FK)<br/>INTEGER combo_id (FK)<br/>INTEGER quantity<br/>REAL unit_price_at_order"]
 
-    RESTAURANT_ORDERS ||--o{ ORDER_COMBO_ITEMS : contains
-    COMBOS ||--o{ ORDER_COMBO_ITEMS : ordered_as
+        CC["COMBO_COMPONENTS<br/>────────────<br/>INTEGER component_id (PK)<br/>INTEGER combo_id (FK)<br/>INTEGER menu_item_id (nullable FK)<br/>INTEGER child_combo_id (nullable FK)<br/>INTEGER quantity"]
 
-    COMBOS ||--o{ COMBO_COMPONENTS : contains
-    MENU_ITEMS o|--o{ COMBO_COMPONENTS : included_as
-    COMBOS o|--o{ COMBO_COMPONENTS : nested_as
+    end
+
+    %% Database relationships
+
+    MENU -->|"1 to many"| MI
+    ING -->|"1 to many"| MI
+
+    ORD -->|"1 to many"| OI
+    MENU -->|"1 to many"| OI
+
+    ORD -->|"1 to many"| OCI
+    COM -->|"1 to many"| OCI
+
+    COM -->|"1 to many"| CC
+    MENU -.->|"Optional component"| CC
+    COM -.->|"Nested combo"| CC
+
+    %% Entity colors
+
+    classDef ingredient fill:#064E3B,stroke:#34D399,color:#FFFFFF,stroke-width:2px
+    classDef menu fill:#1E40AF,stroke:#60A5FA,color:#FFFFFF,stroke-width:2px
+    classDef orders fill:#581C87,stroke:#C084FC,color:#FFFFFF,stroke-width:2px
+    classDef combos fill:#854D0E,stroke:#FACC15,color:#FFFFFF,stroke-width:2px
+    classDef junction fill:#155E75,stroke:#67E8F9,color:#FFFFFF,stroke-width:2px
+    classDef orderitems fill:#9D174D,stroke:#F9A8D4,color:#FFFFFF,stroke-width:2px
+    classDef ordercombos fill:#5B21B6,stroke:#C4B5FD,color:#FFFFFF,stroke-width:2px
+    classDef components fill:#9A3412,stroke:#FDBA74,color:#FFFFFF,stroke-width:2px
+
+    class ING ingredient
+    class MENU menu
+    class ORD orders
+    class COM combos
+    class MI junction
+    class OI orderitems
+    class OCI ordercombos
+    class CC components
+
+    %% Legend
+
+    subgraph LEGEND["ERD LEGEND"]
+
+        direction LR
+
+        PK["PK = Primary Key<br/>Uniquely identifies a record"]
+        FK["FK = Foreign Key<br/>References another table"]
+        CPK["PK, FK = Composite Key<br/>Acts as both PK and FK"]
+        REL["1 to many = One-to-Many<br/>One parent can have multiple records"]
+        OPT["Dashed line = Optional relationship<br/>A component reference may be nullable"]
+
+    end
+
+    classDef legendpk fill:#854D0E,stroke:#FACC15,color:#FFFFFF
+    classDef legendfk fill:#1E40AF,stroke:#60A5FA,color:#FFFFFF
+    classDef legendcpk fill:#9D174D,stroke:#F9A8D4,color:#FFFFFF
+    classDef legendrel fill:#064E3B,stroke:#34D399,color:#FFFFFF
+    classDef legendopt fill:#374151,stroke:#9CA3AF,color:#FFFFFF
+
+    class PK legendpk
+    class FK legendfk
+    class CPK legendcpk
+    class REL legendrel
+    class OPT legendopt
 ```
+
+**Figure 3.** Finalized eight-table Entity-Relationship Diagram showing DineSmart's database entities, primary keys, foreign keys, and relationships.
+
+### Legend
+
+| Symbol | Meaning |
+|---|---|
+| PK | Primary Key |
+| FK | Foreign Key |
+| PK, FK | Composite key attribute |
+| 1 to many | One-to-many relationship |
+| Dashed line | Optional relationship |
+| Solid colored box | Database entity |
+
+### Entity color guide
+
+| Color | Database entity |
+|---|---|
+| Green | INGREDIENTS |
+| Blue | MENU_ITEMS |
+| Purple | RESTAURANT_ORDERS |
+| Yellow | COMBOS |
+| Cyan | MENU_ITEM_INGREDIENTS |
+| Pink | ORDER_ITEMS |
+| Violet | ORDER_COMBO_ITEMS |
+| Orange | COMBO_COMPONENTS |
 
 **Figure 3.** Finalized eight-table Entity-Relationship Diagram showing the database entities, primary keys, foreign keys, and relationships of DineSmart.
 
