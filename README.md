@@ -62,7 +62,8 @@ The application uses three main data visualizations:
 
 ### 1. Menu Category Frequency – Bar Chart
 
-The application retrieves menu items from the database and groups them according to their categories: Appetizer, Main Course, Beverage, and Combo. It uses the SQL COUNT(*) function with GROUP BY to count how many menu items belong to each category.
+We use the `countByItemType()` method in `MenuItemRepository.java` to count the number of menu items belonging to each category, such as Appetizers, Main Courses, Beverages, and Combos. We use SQL's `COUNT()` function together with `GROUP BY` to group and count the records by category. 
+
 * Chart used: Bar Chart.
 * Why chosen: A bar chart was chosen because the data consists of separate categories, such as Appetizer, Main Course, Beverage, and Combo. These categories are independent of one another, so comparing their frequencies                using bars is straightforward.
    * Each bar represents one menu category.
