@@ -16,28 +16,28 @@
 
 ## TABLE OF CONTENTS
 
-Revision History ---------------------------------------------------------------------------------------------------------------------------------- i
+Revision History -----------------------------------------------------------------------------------------------i
 
-**1. Introduction & Project Overview--------------------------------------------------------------------------------------------------------------1**
+**1. Introduction & Project Overview--------------------------------------------------------------------------1**
 
-**2. Preliminary ER Sketch, Feature Checklist & Team Roles ------------------------------------------------------------------------------------2**<br>
-&nbsp;&nbsp;&nbsp;&nbsp;2.1 Preliminary Entity-Relationship (ER) Sketch------------------------------------------------------------------------------------------------2<br>
-&nbsp;&nbsp;&nbsp;&nbsp;2.2 Feature Checklist----------------------------------------------------------------------------------------------------------------------------3     
-&nbsp;&nbsp;&nbsp;&nbsp;2.3 Team Roles and Responsibilities------------------------------------------------------------------------------------------------------------3
+**2. Preliminary ER Sketch, Feature Checklist & Team Roles -------------------------------------------------2**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;2.1 Preliminary Entity-Relationship (ER) Sketch------------------------------------------------------------2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;2.2 Feature Checklist----------------------------------------------------------------------------------------3     
+&nbsp;&nbsp;&nbsp;&nbsp;2.3 Team Roles and Responsibilities------------------------------------------------------------------------3
 
 
-**3. System Architecture & Object-Oriented Design---------------------------------------------------------------------------------------------4**<br>
-&nbsp;&nbsp;&nbsp;&nbsp;3.1 System Architecture Overview -------------------------------------------------------------------------------------------------------------4<br>
-&nbsp;&nbsp;&nbsp;&nbsp;3.2 Object-Oriented Design (OOD) ------------------------------------------------------------------------------------------------------------5<br>
-&nbsp;&nbsp;&nbsp;&nbsp;3.3 MenuItem Class Hierarchy -----------------------------------------------------------------------------------------------------------------6<br>
-&nbsp;&nbsp;&nbsp;&nbsp;3.4 Application Components and Responsibilities --------------------------------------------------------------------------------------------7
+**3. System Architecture & Object-Oriented Design----------------------------------------------------------4**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;3.1 System Architecture Overview--------------------------------------------------------------------------4<br>
+&nbsp;&nbsp;&nbsp;&nbsp;3.2 Object-Oriented Design (OOD) ------------------------------------------------------------------------5<br>
+&nbsp;&nbsp;&nbsp;&nbsp;3.3 MenuItem Class Hierarchy------------------------------------------------------------------------------6<br>
+&nbsp;&nbsp;&nbsp;&nbsp;3.4 Application Components and Responsibilities---------------------------------------------------------7
 
-**4. Data Model & Database Design --------------------------------------------------------------------------------------------------------------8**<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.1 Database Overview -------------------------------------------------------------------------------------------------------------------------8<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.2 Entity and Attribute Definitions ------------------------------------------------------------------------------------------------------------9<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.3 Primary Keys and Foreign Keys ------------------------------------------------------------------------------------------------------------10<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.4 Database Relationships --------------------------------------------------------------------------------------------------------------------11<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.5 SQLite Database Structure -----------------------------------------------------------------------------------------------------------------12
+**4. Data Model & Database Design --------------------------------------------------------------------------8**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.1 Database Overview -------------------------------------------------------------------------------------8<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.2 Entity and Attribute Definitions ------------------------------------------------------------------------9<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.3 Primary Keys and Foreign Keys ------------------------------------------------------------------------10<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.4 Database Relationships --------------------------------------------------------------------------------11<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.5 SQLite Database Structure -----------------------------------------------------------------------------12
 
 
 ## 1. Introduction & Project Overview
@@ -51,7 +51,7 @@ The Restaurant Ordering & Inventory Insights is a JavaFX desktop application des
 ### 2.1 Preliminary Entity-Relationship (ER) Sketch
 <img width="4008" height="3168" alt="image" src="https://github.com/user-attachments/assets/d84a0066-fac9-4fba-89e4-9881149f5ac2" />
 <p align="center">
-  <em>Figure 1: Restaurant Ordering & Inventory System Diagram</em>
+  <em>Figure 1: Preliminary Entity-Relationship Diagram of the Restaurant Ordering & Inventory Insights System</em>
 </p>
 
 ### 2.2 Feature Checklist
