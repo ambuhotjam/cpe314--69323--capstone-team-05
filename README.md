@@ -1,3 +1,22 @@
+| **Group Name / No.:**        | Group 5                                                                                                                                  |
+|:-----------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------|
+| **Members:**                 | Jamaica Ambuhot - Developer 1                                                                                                            |
+|                              | Janine Ebrado - Developer 2                                                                                                              |
+|                              | Josiela Yap - UI (User Interface)                                                                                                        |
+|                              | Vincent Hayag - DB Admin                                                                                                                 |
+|                              | Kiro Del Rosario - Team Leader                                                                                                           |
+|                              | Ben Justin Lajot - QA (Quality Assurance)                                                                                                |
+| **Repository URL:**          | [https://github.com/ambuhotjam/cpe314--69323--capstone-team-05.git](https://github.com/ambuhotjam/cpe314--69323--capstone-team-05.git)   |
+| **Theme:**                   | Restaurant Ordering & Inventory Insights                                                                                                 |
+| **API You Will Use:**        | TheMealDB - [https://www.themealdb.com/api/json/v1/1/](https://www.themealdb.com/api/json/v1/1/)                                         |
+| **Instructor:**              | Richyll Son                                                                                                                              |
+| **Term:**                    | First Semester, S.Y. 2026-2027                                                                                                           |
+| **Document Version / Date:** | Ver 0.1 - October 20, 2026                                                                                                               |
+
+
+
+
+
 ## ONE-PARAGRAPH PITCH
 
 The Restaurant Ordering & Inventory Insights is a JavaFX desktop application designed for small restaurants and campus canteens that need an efficient way to manage orders and ingredient inventory. The application will manage menu items, nested meal combos, and the kitchen order queue while integrating with TheMealDB to import real recipe information. It will use SQLite to store records and generate charts showing best-selling menu items and peak ordering hours, helping staff improve food preparation and inventory management.
