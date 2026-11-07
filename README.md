@@ -95,6 +95,24 @@ DineSmart uses the `whenComplete()` callback to handle both successful completio
 * **Failure Execution:** Displays clear error notifications on the status label and output panel. Action buttons are re-enabled immediately to allow the user to retry the operation.
 * **Network Fault Tolerance:** The `TheMealDbService.java` class sets connection and request timeouts to prevent network operations from hanging indefinitely if the external service is slow or unresponsive.
 
+### 6.5 Code References
+
+The following classes and methods demonstrate the concurrency implementation of DineSmart:
+
+| Class/File | Method/Implementation | Purpose |
+| :--- | :--- | :--- |
+| `DineSmartApp.java` | `CompletableFuture.supplyAsync()`<br>`api.searchByName()` | Executes recipe searching in the background. |
+| `DineSmartApp.java` | `CompletableFuture.supplyAsync()`<br>`api.searchByCategory()` | Executes category browsing in the background. |
+| `DineSmartApp.java` | `CompletableFuture.supplyAsync()`<br>`recipeRepository.importRecipe()` | Executes recipe importing and database saving in the background. |
+| `DineSmartApp.java` | `CompletableFuture.supplyAsync()`<br>`orderRepository.analyzeHistoricalOrderLog()` | Executes historical order analysis in the background. |
+| `DineSmartApp.java` | `whenComplete()`<br>`Platform.runLater()` | Handles operation completion and safely updates the JavaFX interface. |
+| `TheMealDbService.java` | `searchByName()`<br>`searchByCategory()`<br>`lookupById()` | Handles external API requests and recipe retrieval. |
+| `OrderRepository.java` | `analyzeHistoricalOrderLog()` | Performs historical order aggregation and generates an analysis report. |
+| `MealRecipeRepository.java` | `importRecipe()` | Saves imported recipe information and ingredient relationships transactionally in SQLite. |
+
+#### Summary:
+
+DineSmart implements asynchronous processing through Java's `CompletableFuture.supplyAsync()` and JavaFX's `Platform.runLater()`. These mechanisms allow time-consuming operations to execute in the background while keeping the main interface available for user interaction. By combining asynchronous execution, completion handling, and appropriate interface updates, the application provides a more responsive experience during API communication, recipe importing, and historical order analysis.
 
 ## 7. Data Mining and & Visualization Design
 
