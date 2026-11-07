@@ -20,11 +20,11 @@ Revision History ---------------------------------------------------------------
 
 **1. Introduction & Project Overview--------------------------------------------------------------------------1**
 
-**2. Entity Relationship Sketch, Feature Checklist & Team Roles --------------------------------------------2**<br>
+**2. Entity Relationship Sketch, Feature Checklist, Team Roles & Risks/ Open Questions -----------------2**<br>
 &nbsp;&nbsp;&nbsp;&nbsp;2.1 Entity-Relationship (ER) Sketch-------------------------------------------------------------------------2<br>
 &nbsp;&nbsp;&nbsp;&nbsp;2.2 Feature Checklist----------------------------------------------------------------------------------------3     
-&nbsp;&nbsp;&nbsp;&nbsp;2.3 Team Roles and Responsibilities------------------------------------------------------------------------3
-
+&nbsp;&nbsp;&nbsp;&nbsp;2.3 Team Roles and Responsibilities------------------------------------------------------------------------3                               
+&nbsp;&nbsp;&nbsp;&nbsp;2.4 Risks/ Open Questions----------------------------------------------------------------------------------3
 
 **3. System Architecture & Object-Oriented Design----------------------------------------------------------4**<br>
 &nbsp;&nbsp;&nbsp;&nbsp;3.1 System Architecture Overview--------------------------------------------------------------------------4<br>
@@ -46,7 +46,7 @@ The Restaurant Ordering & Inventory Insights is a JavaFX desktop application des
 
 
 
-## 2. Preliminary ER Sketch & Team Roles
+## 2. Entity Relationship Sketch, Feature Checklist, Team Roles & Risks/ Open Questions
 
 ### 2.1 Preliminary Entity-Relationship (ER) Sketch
 <img width="4008" height="3168" alt="image" src="https://github.com/user-attachments/assets/d84a0066-fac9-4fba-89e4-9881149f5ac2" />
@@ -68,8 +68,8 @@ The Restaurant Ordering & Inventory Insights is a JavaFX desktop application des
 | Labeled bar chart of item quantities sold and line chart of orders by hour. | Data Visualization |
 
 
-### 2.3 Team Roles and Responsibilities
-| Member | Primary Responsibility |
+### 2.3 Team Roles 
+| Member | Responsibility |
 |---|---|
 | Kiro Del Rosario - Team Leader | TheMealDB integration and background CSV-import plan. |
 | Jamaica Ambuhot - Developer 1 | OOD hierarchy and recursive combo pricing plan. |
@@ -77,6 +77,30 @@ The Restaurant Ordering & Inventory Insights is a JavaFX desktop application des
 | Vincent Hayag - DB Admin | Kitchen Queue, cancellation Stack and stock-flow plan. |
 | Josiela Yap - UI (User Interface) | JavaFX screen sketch and event-handler plan. |
 | Ben Justin Lajot - QA (Quality Assurance) | JUnit test cases, sales aggregation and chart plan. |
+
+### 2.4 Risks / Open Questions
+
+| No. | Risks | Questions |
+| --- | --- | --- |
+| 1 | TheMealDB API failure | What will happen if TheMealDB API is unavailable? |
+| 2 | Internet connection failure | Can the system still work without internet? |
+| 3 | Incorrect inventory updates | How will you prevent incorrect ingredient stock quantities? |
+| 4 | Insufficient ingredients | What happens if there is not enough stock for an order? |
+| 5 | Circular combo references | How will you prevent a combo from containing itself indirectly? |
+| 6 | Incorrect combo pricing | How will you calculate the price of nested combos accurately? |
+| 7 | Database corruption | What will you do if the SQLite database becomes corrupted? |
+| 8 | Data loss | How will you back up and restore restaurant records? |
+| 9 | Invalid user input | How will the system handle negative or zero quantities? |
+| 10 | Incorrect sales reports | How will you ensure that sales charts display accurate results? |
+| 11 | Cancelled orders | How will you ensure cancelled orders are excluded from sales reports? |
+| 12 | Menu price changes | What happens to previous orders when a menu item's price changes? |
+| 13 | Duplicate recipe imports | How will you prevent the same recipe from being imported more than once? |
+| 14 | Application crash | What happens if the application crashes while saving an order? |
+| 15 | Incorrect order processing | How will you ensure that kitchen orders follow FIFO (First-In, First-Out)? |
+| 16 | Incorrect order cancellation | How will you prevent completed orders from being cancelled accidentally? |
+| 17 | Database query errors | How will you prevent invalid or unsafe database operations? |
+| 18 | Testing failures | How will you verify that each feature works correctly before deployment? |
+
 
 
 
