@@ -53,6 +53,48 @@ TheMealDB API makes DineSmart more efficient by allowing administrators to disco
 
 The integration connects external recipe data with the application's local SQLite database and menu management feature, making recipe discovery and menu preparation more convenient.
 
+## 6. Concurrency Design
+
+### 6.1 Long-Running Operations
+DineSmart performs several operations that may take additional time to complete, particularly those involving external API requests and database processing. These operations include:
+* **API Recipe Search:** Sends a request to **TheMealDB API** and retrieves matching recipes based on the user's search input.
+* **Category Browsing:** Retrieves available recipes from a selected category (e.g., Main Course, Starter).
+* **Recipe Import:** Retrieves complete recipe details when necessary and saves the recipe along with its associated ingredients into the local **SQLite database**.
+* **Historical Order Analysis:** Processes saved restaurant order records to generate a summary of total orders, completed vs. cancelled orders, peak ordering hours, and top-selling items.
+
+To prevent these operations from locking up the application, DineSmart executes them asynchronously using Java’s `CompletableFuture` class. This offloads time-consuming background tasks away from the **JavaFX Application Thread**, which remains dedicated to rendering the UI and handling user interactions.
+
+---
+
+### 6.2 Threading Approach
+DineSmart uses `CompletableFuture.supplyAsync()` to execute long-running operations in the background. The core threading workflow is implemented in `DineSmartApp.java`:
+
+1. **Background Task Execution:**
+   * **API Search & Browsing:** Executes `api.searchByName(query.trim())` and `api.searchByCategory(category)` asynchronously.
+   * **Recipe Import:** Retrieves complete recipe data via `api.lookupById()` and persists it via `recipeRepository.importRecipe()` inside a background thread.
+   * **Historical Order Analysis:** Clicking *"Analyze historical orders (background)"* executes `orderRepository.analyzeHistoricalOrderLog()` in the background to compute sales statistics and order metrics.
+2. **Completion Handling & Thread Synchronization:**
+   * The `whenComplete()` completion handler determines whether the operation succeeded or threw an exception.
+   * Once background processing finishes, `Platform.runLater()` is invoked to safely push interface updates back to the **JavaFX Application Thread**.
+
+---
+
+### 6.3 User Interface Responsiveness
+To maintain UI responsiveness and prevent accidental duplicate submissions while asynchronous tasks run:
+
+* **Visual Feedback & Controls:** The system provides real-time status messages (e.g., *"Searching TheMealDB..."*) and temporarily disables the action button triggering the operation (e.g., search, import, or analyze). Upon completion, the button is re-enabled.
+* **Thread-Safe UI Modifications:** All updates to JavaFX components—including buttons, status labels, text areas, and recipe lists—are wrapped inside `Platform.runLater()` to strictly comply with JavaFX threading rules.
+* **Non-Blocking User Workflow:** Because the main UI thread is never blocked, users can smoothly navigate and interact with other sections of DineSmart while background operations execute.
+
+---
+
+### 6.4 Error Handling & Completion Updates
+DineSmart uses the `whenComplete()` callback to handle both successful completions and unexpected exceptions gracefully:
+
+* **Successful Execution:** Updates the UI with parsed details or output summaries. For example, a successful recipe import reports the saved recipe name, API meal ID, category, and total saved ingredients.
+* **Failure Execution:** Displays clear error notifications on the status label and output panel. Action buttons are re-enabled immediately to allow the user to retry the operation.
+* **Network Fault Tolerance:** The `TheMealDbService.java` class sets connection and request timeouts to prevent network operations from hanging indefinitely if the external service is slow or unresponsive.
+
 
 ## 7. Data Mining and & Visualization Design
 
