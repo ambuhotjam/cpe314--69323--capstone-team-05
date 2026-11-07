@@ -150,7 +150,8 @@ We use the `findBestSellers()` method in `OrderRepository.java` to analyze compl
   - The height of the bar represents its total quantity sold in completed orders.
   - Different colors distinguish food items (green) from beverages (orange).
   - Users can easily compare sales performance and identify the best-selling and least-selling products.
-## Summary
+
+### Summary:
 
 DineSmart uses bar charts when the objective is to compare quantities among different groups or products, and a line chart when the objective is to understand how values change over time. The selected chart types make the dashboard easier to interpret and help restaurant staff make informed decisions about menu management, inventory planning, and business operations.
 
