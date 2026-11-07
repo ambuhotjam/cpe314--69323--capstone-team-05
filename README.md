@@ -20,8 +20,8 @@ Revision History ---------------------------------------------------------------
 
 **1. Introduction & Project Overview--------------------------------------------------------------------------1**
 
-**2. Preliminary ER Sketch, Feature Checklist & Team Roles -------------------------------------------------2**<br>
-&nbsp;&nbsp;&nbsp;&nbsp;2.1 Preliminary Entity-Relationship (ER) Sketch------------------------------------------------------------2<br>
+**2. Entity Relationship Sketch, Feature Checklist & Team Roles --------------------------------------------2**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;2.1 Entity-Relationship (ER) Sketch-------------------------------------------------------------------------2<br>
 &nbsp;&nbsp;&nbsp;&nbsp;2.2 Feature Checklist----------------------------------------------------------------------------------------3     
 &nbsp;&nbsp;&nbsp;&nbsp;2.3 Team Roles and Responsibilities------------------------------------------------------------------------3
 
