@@ -1,0 +1,23 @@
+# Maven build output
+target/
+
+# Eclipse files
+.classpath
+.project
+.settings/
+
+# IntelliJ files
+.idea/
+*.iml
+
+# Compiled Java files
+*.class
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.dbsrc/test/java/ph/uc/cpe314/dinesmart/Dinesmartweek10.zip
+/target/
+/dinesmart.db
