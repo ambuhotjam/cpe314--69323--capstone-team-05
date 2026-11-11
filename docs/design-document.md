@@ -173,8 +173,6 @@ Each class has a specific responsibility, separating menu management, combo pric
 
 ## 4.1 Finalized Entity-Relationship Diagram (ERD)
 
-**Figure 3: Finalized Entity-Relationship Diagram for DineSmart**
-
 The Entity-Relationship Diagram (ERD) illustrates the relational database structure of the DineSmart Restaurant Ordering & Inventory Insights application. The application uses SQLite as its database management system and Java Database Connectivity (JDBC) to execute database operations.
 
 The database consists of eight application tables:
@@ -190,10 +188,6 @@ The database consists of eight application tables:
 
 These tables support menu management, ingredient records, customer orders, and meal combo management. Primary keys (PKs) uniquely identify records, while foreign keys (FKs) establish relationships between related tables.
 
-
-## 4.1 Finalized Entity-Relationship Diagram (ERD)
-
-### Finalized Entity-Relationship Diagram
 
 ```mermaid
 erDiagram
