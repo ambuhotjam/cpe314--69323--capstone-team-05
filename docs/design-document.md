@@ -153,4 +153,3 @@ We use the `findBestSellers()` method in `OrderRepository.java` to analyze compl
 ### Summary:
 
 DineSmart uses bar charts when the objective is to compare quantities among different groups or products, and a line chart when the objective is to understand how values change over time. The selected chart types make the dashboard easier to interpret and help restaurant staff make informed decisions about menu management, inventory planning, and business operations.
-
