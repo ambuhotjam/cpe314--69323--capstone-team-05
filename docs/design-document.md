@@ -1,3 +1,122 @@
+<div align="center">
+
+CPE 314 — Software Design
+
+University of Cebu
+
+Computer Engineering Department
+
+# Restaurant Ordering & Inventory Insights
+
+Project Design Document
+
+</div>
+
+<br>
+
+| | |
+|---|---|
+| **Group Name / No.:** | Group 5 |
+| **Members:** | Kiro Del Rosario- Team Leader |
+| | Jamaica Ambuhot- Developer 1 |
+| | Janine Ebrado- Developer 2 |
+| | Josiela Yap- UI (User Interface) |
+| | Vincent Hayag- DB Admin |
+| | Ben Justin Lajot- QA (Quality Assurance) |
+| **Instructor:** | Richyll Son |
+| **Term:** | First Semester, S.Y. 2026-2027 |
+| **Document Version / Date:** | Ver 0.1 - October 20, 2026 |
+
+<br>
+
+## Table of Contents
+<img width="840" height="242" alt="image" src="https://github.com/user-attachments/assets/f3ca289e-f7eb-4858-b1eb-0d6b38160b73" />
+
+
+<h2>Revision History</h2>
+
+<p><strong>Table 1: Revision history</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center;">Version</th>
+      <th width="140">Date</th>
+      <th>Author</th>
+      <th>Changes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center" valign="top"><b>0.1</b></td>
+      <td valign="top" width="140">
+        October&nbsp;20,&nbsp;2026<br>
+        October&nbsp;25,&nbsp;2026
+      </td>
+      <td valign="top">
+        Group 5<br>
+        <b>Ambuhot</b> - Introduction<br>
+        <b>Ebrado</b> - ER Sketch<br>
+        <b>Yap</b> - Feature Checklist<br>
+        <b>Del Rosario</b> - Task Split<br>
+        <b>Hayag</b> - The Public API<br>
+        <b>Lajot</b> - Risk/Questions
+      </td>
+      <td valign="top">
+        Initial draft<br>
+        Completed the Week 8 project proposal, including the introduction, ER sketch, feature checklist, task split, public API, and risks/questions.
+      </td>
+    </tr>
+    <tr>
+      <td align="center" valign="top"><b>0.2</b></td>
+      <td valign="top" width="140">October&nbsp;26,&nbsp;2026</td>
+      <td valign="top">
+        <b>Yap &amp; Hayag</b> - Class Hierarchy Diagram/Description<br>
+        <b>Ambuhot</b> - SRP Justification<br>
+        <b>Ebrado</b> - Finalized ERD<br>
+        <b>Del Rosario &amp; Lajot</b> - Schema Description
+      </td>
+      <td valign="top">
+        Added Week 9 design and documentation sections, including the Class Hierarchy Diagram, SRP Justification, Finalized ERD, and Schema Description.
+      </td>
+    </tr>
+    <tr>
+      <td align="center"><b>0.3</b></td>
+      <td></td>
+      <td></td>
+      <td>Week 10 sections added</td>
+    </tr>
+    <tr>
+      <td align="center"><b>1.0</b></td>
+      <td></td>
+      <td></td>
+      <td>Final compilation and polish — Week 11</td>
+    </tr>
+  </tbody>
+</table>
+
+## 1. Introduction & Project Overview
+The Restaurant Ordering & Inventory Insights is a JavaFX desktop application designed for small restaurants and campus canteens that need an efficient way to manage orders and ingredient inventory. The application will manage menu items, nested meal combos, and the kitchen order queue while integrating with TheMealDB to import real recipe information. It will use SQLite to store records and generate charts showing best-selling menu items and peak ordering hours, helping staff improve food preparation and inventory management.
+
+## 2. Preliminary ER Sketch & Team Roles
+<img width="4008" height="3168" alt="image" src="https://github.com/user-attachments/assets/3ec183e8-4a63-4e80-bec8-cbe5d00a00a3" />
+<p align="center">
+  <em>Figure 1: Restaurant Ordering & Inventory System Diagram</em>
+</p>
+
+## Team Roles
+
+Table 1: Team members and proposed responsibilities
+
+| Member | Role |
+|---|---|
+| Kiro Del Rosario - Team Leader | TheMealDB integration and background CSV-import plan. |
+| Jamaica Ambuhot - Developer 1 | OOD hierarchy and recursive combo pricing plan. |
+| Janine Ebrado - Developer 2 | ER sketch and SQLite/JDBC data-layer plan. |
+| Vincent Hayag - DB Admin | Kitchen Queue, cancellation Stack and stock-flow plan. |
+| Josiela Yap - UI (User Interface) | JavaFX screen sketch and event-handler plan. |
+| Ben Justin Lajot - QA (Quality Assurance) | JUnit test cases, sales aggregation and chart plan. |
+
 # 3. System Architecture & Object-Oriented Design
 
 ## 3.1 Class Hierarchy
@@ -443,7 +562,7 @@ DineSmart performs data aggregation and frequency analysis to summarize restaura
 
 The application uses three main data visualizations:
 
-### 1. Menu Category Frequency – Bar Chart
+### 7.1 Menu Category Frequency – Bar Chart
 
 We use the `countByItemType()` method in `MenuItemRepository.java` to count the number of menu items belonging to each category, such as Appetizers, Main Courses, Beverages, and Combos. We use SQL's `COUNT()` function together with `GROUP BY` to group and count the records by category. 
 
@@ -453,7 +572,7 @@ We use the `countByItemType()` method in `MenuItemRepository.java` to count the 
    *  The height of each bar indicates the number of menu items in that category.
    *  Users can quickly compare which category has the most and fewest menu items.
    *  Differences between categories are easy to recognize because the bars share the same measurement scale.
-### 2. Hourly Order Frequency – Line Chart
+### 7.2 Hourly Order Frequency – Line Chart
 
 We use the `getOrdersByHour()` method in `OrderRepository.java` to group restaurant orders according to the hour they were placed. This helps identify the busiest ordering hours. We also use `getPeakOrderingHour()` to determine which hour has the highest number of orders.
 
@@ -463,7 +582,7 @@ We use the `getOrdersByHour()` method in `OrderRepository.java` to group restaur
   - The vertical axis represents the number of orders.
   - Connecting the data points helps users see whether order activity increases or decreases throughout the day.
   - Peaks and drops are easier to identify, helping restaurant staff recognize busy and slow periods.
-### 3. Best-Selling Foods and Beverages – Bar Chart
+### 7.3 Best-Selling Foods and Beverages – Bar Chart
 
 We use the `findBestSellers()` method in `OrderRepository.java` to analyze completed orders and calculate the total quantities sold for each food and beverage item. It groups the ordered items by their names and ranks them according to their total quantities sold. This helps identify which food and beverage products are the best-selling and least-selling items, allowing restaurant management to understand customer preferences and make better decisions about menu planning and inventory.
 
