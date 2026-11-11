@@ -1,0 +1,627 @@
+/*
+ * DineSmart — Burgundy & Ivory restaurant workspace
+ * Visual direction based on the supplied reference mockup.
+ * Keep the same palette across welcome, login, dashboard and feature screens.
+ */
+.root {
+    -fx-font-family: "Segoe UI", "Aptos", sans-serif;
+    -fx-font-size: 13px;
+    -fx-background-color: #fbf8f5;
+    -fx-accent: #6f1730;
+    -fx-focus-color: #8a2944;
+    -fx-faint-focus-color: transparent;
+}
+
+.app-shell, .page-host, .page-wrapper, .content-scroll,
+.content-scroll > .viewport, .page-content {
+    -fx-background-color: #fbf8f5;
+}
+
+/* Left navigation */
+.sidebar {
+    -fx-background-color: #3d0b1b;
+    -fx-padding: 25 15 18 15;
+    -fx-spacing: 22;
+    -fx-border-color: transparent #5b2030 transparent transparent;
+    -fx-border-width: 0 1 0 0;
+}
+.brand-block {
+    -fx-padding: 0 8 20 8;
+    -fx-border-color: transparent transparent #6b3542 transparent;
+    -fx-border-width: 0 0 1 0;
+}
+.brand-mark {
+    -fx-min-width: 39px;
+    -fx-min-height: 39px;
+    -fx-alignment: center;
+    -fx-background-color: #fffaf5;
+    -fx-background-radius: 12;
+    -fx-text-fill: #4b0b20;
+    -fx-font-size: 21px;
+    -fx-font-weight: 900;
+}
+.brand-name {
+    -fx-text-fill: #fffaf7;
+    -fx-font-family: "Georgia", serif;
+    -fx-font-size: 21px;
+    -fx-font-weight: 700;
+}
+.brand-caption {
+    -fx-text-fill: #d9bec5;
+    -fx-font-size: 9px;
+    -fx-font-weight: 800;
+    -fx-letter-spacing: 1.1px;
+    -fx-padding: 7 0 0 3;
+}
+.nav-section-label {
+    -fx-text-fill: #c8aab3;
+    -fx-font-size: 9px;
+    -fx-font-weight: 900;
+    -fx-letter-spacing: 1.5px;
+    -fx-padding: 5 10 7 10;
+}
+.navigation { -fx-spacing: 6; }
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 9;
+    -fx-padding: 11 12;
+    -fx-text-fill: #f2e9ec;
+    -fx-cursor: hand;
+    -fx-effect: none;
+}
+.nav-button:hover {
+    -fx-background-color: #5a172b;
+    -fx-text-fill: #ffffff;
+}
+.nav-button-active, .nav-button-active:hover {
+    -fx-background-color: #5a1027;
+    -fx-text-fill: #ffffff;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.16), 8, 0, 0, 2);
+}
+.nav-button-active .nav-caption, .nav-button-active .nav-icon {
+    -fx-text-fill: #4b0b20;
+}
+.nav-icon {
+    -fx-min-width: 20px;
+    -fx-alignment: center;
+    -fx-font-size: 16px;
+    -fx-text-fill: #f2e9ec;
+}
+.nav-caption {
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #f2e9ec;
+}
+.sidebar-footer {
+    -fx-text-fill: #c9afb7;
+    -fx-font-size: 10px;
+    -fx-line-spacing: 3px;
+    -fx-padding: 13 8 0 8;
+    -fx-border-color: #6b3542 transparent transparent transparent;
+}
+
+/* Workspace header */
+.topbar {
+    -fx-background-color: #fffdfb;
+    -fx-padding: 15 25;
+    -fx-border-color: transparent transparent #eee3df transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-spacing: 15;
+}
+.topbar-title {
+    -fx-font-family: "Georgia", serif;
+    -fx-font-size: 20px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #3e1724;
+}
+.topbar-hint {
+    -fx-font-size: 11px;
+    -fx-text-fill: #8b7780;
+}
+.system-status {
+    -fx-text-fill: #6c1931;
+    -fx-background-color: #f5e9eb;
+    -fx-background-radius: 20;
+    -fx-padding: 8 12;
+    -fx-font-size: 10px;
+    -fx-font-weight: 800;
+}
+.account-chip {
+    -fx-text-fill: #4b0b20;
+    -fx-background-color: #f8f0ed;
+    -fx-border-color: #ead8d7;
+    -fx-border-radius: 18;
+    -fx-background-radius: 18;
+    -fx-padding: 8 13;
+    -fx-font-size: 10px;
+    -fx-font-weight: 800;
+}
+.status-strip {
+    -fx-background-color: #fffdfb;
+    -fx-padding: 8 24;
+    -fx-border-color: #eee3df transparent transparent transparent;
+}
+.status-banner { -fx-text-fill: #7a4b59; -fx-font-size: 11px; }
+
+/* Main page and photo header */
+.page-wrapper {
+    -fx-background-color: #fbf8f5;
+}
+.page-content {
+    -fx-padding: 2 0 18 0;
+}
+.page-hero {
+    -fx-background-color: linear-gradient(to right, #fffdfa, #f4e9e7);
+    -fx-background-radius: 18;
+    -fx-border-color: #eadbd8;
+    -fx-border-radius: 18;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(66,28,39,0.08), 17, 0, 0, 3);
+    -fx-padding: 0;
+}
+.hero-copy { -fx-spacing: 8; }
+.hero-eyebrow {
+    -fx-text-fill: #986777;
+    -fx-font-size: 9px;
+    -fx-font-weight: 900;
+    -fx-letter-spacing: 1.7px;
+}
+.hero-title {
+    -fx-text-fill: #4b0b20;
+    -fx-font-family: "Georgia", serif;
+    -fx-font-size: 29px;
+    -fx-font-weight: 700;
+}
+.hero-subtitle {
+    -fx-text-fill: #76616a;
+    -fx-font-size: 12px;
+    -fx-line-spacing: 2px;
+}
+.hero-image-frame {
+    -fx-background-color: #fffdfb;
+    -fx-background-radius: 22;
+    -fx-border-color: rgba(255,255,255,0.95);
+    -fx-border-radius: 22;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(gaussian, rgba(67,25,40,0.20), 15, 0.12, 0, 4);
+}
+
+/* Content cards */
+.content-card, .metric-card {
+    -fx-background-color: #fffdfb;
+    -fx-background-radius: 14;
+    -fx-border-color: #eee2df;
+    -fx-border-radius: 14;
+    -fx-padding: 18;
+    -fx-effect: dropshadow(gaussian, rgba(67,25,40,0.07), 13, 0, 0, 3);
+}
+.section-title {
+    -fx-font-family: "Georgia", serif;
+    -fx-font-size: 15px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #4b0b20;
+    -fx-padding: 0 0 9 0;
+    -fx-border-color: transparent transparent #f0e4e1 transparent;
+    -fx-border-width: 0 0 1 0;
+}
+.metric-icon {
+    -fx-font-size: 17px;
+    -fx-font-weight: 800;
+    -fx-min-width: 34px;
+    -fx-min-height: 34px;
+    -fx-alignment: center;
+    -fx-background-radius: 10;
+}
+.metric-heading {
+    -fx-font-size: 10px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #8a737c;
+}
+.metric-value {
+    -fx-font-size: 27px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #4b0b20;
+}
+.metric-foot {
+    -fx-font-size: 9px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #a18e95;
+}
+.metric-green .metric-icon { -fx-background-color: #f2e9e4; -fx-text-fill: #7a4b37; }
+.metric-orange .metric-icon { -fx-background-color: #fbf0dc; -fx-text-fill: #9c6a27; }
+.metric-blue .metric-icon { -fx-background-color: #eaf0f2; -fx-text-fill: #4f7480; }
+.metric-purple .metric-icon { -fx-background-color: #f1eaf3; -fx-text-fill: #805b91; }
+
+/* Photo tiles on the dashboard */
+.feature-card {
+    -fx-background-color: #fffdfb;
+    -fx-background-radius: 15;
+    -fx-border-color: #eadbd8;
+    -fx-border-radius: 15;
+    -fx-padding: 0;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(67,25,40,0.10), 12, 0, 0, 3);
+}
+.feature-card:hover {
+    -fx-background-color: #fff9f7;
+    -fx-border-color: #cfaeb6;
+    -fx-effect: dropshadow(gaussian, rgba(75,11,32,0.18), 16, 0, 0, 4);
+}
+.feature-card:pressed { -fx-background-color: #f4e9e8; }
+.feature-card-title {
+    -fx-font-family: "Georgia", serif;
+    -fx-font-size: 16px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #4b0b20;
+}
+.feature-card-description {
+    -fx-font-size: 10px;
+    -fx-text-fill: #86737a;
+}
+
+/* Buttons */
+.button {
+    -fx-background-color: #5a1027;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 11px;
+    -fx-font-weight: 800;
+    -fx-padding: 10 16;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+.button:hover { -fx-background-color: #76203a; }
+.button:pressed { -fx-background-color: #3d091a; }
+.button:disabled { -fx-background-color: #e6d9dc; -fx-text-fill: #9d858c; }
+.button-secondary {
+    -fx-background-color: #f5ecea;
+    -fx-text-fill: #5a1027;
+    -fx-border-color: #e5d2d1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
+.button-secondary:hover { -fx-background-color: #ecdddc; -fx-text-fill: #4b0b20; }
+.button-danger {
+    -fx-background-color: #8c263b;
+    -fx-text-fill: #ffffff;
+}
+.button-danger:hover { -fx-background-color: #a7354b; }
+.button-logout {
+    -fx-background-color: #5a1027;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 8;
+    -fx-padding: 9 14;
+    -fx-font-size: 10px;
+    -fx-font-weight: 900;
+}
+.button-logout:hover { -fx-background-color: #76203a; }
+
+/* Form controls */
+.text-field, .password-field, .choice-box, .combo-box, .date-picker {
+    -fx-background-color: #fffefd;
+    -fx-border-color: #e3d4d1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 9 11;
+    -fx-text-fill: #3e2931;
+    -fx-prompt-text-fill: #aa989f;
+}
+.text-field:focused, .password-field:focused, .choice-box:focused,
+.combo-box:focused, .date-picker:focused {
+    -fx-border-color: #9b5268;
+    -fx-effect: dropshadow(gaussian, rgba(111,23,48,0.12), 8, 0, 0, 0);
+}
+.label { -fx-text-fill: #493740; }
+.page-subtitle { -fx-text-fill: #88757d; }
+.list-view, .text-area {
+    -fx-background-color: #fffefd;
+    -fx-control-inner-background: #fffefd;
+    -fx-border-color: #eadedb;
+    -fx-border-radius: 9;
+    -fx-background-radius: 9;
+}
+.list-cell {
+    -fx-padding: 10 12;
+    -fx-background-color: #fffefd;
+    -fx-text-fill: #493740;
+}
+.list-cell:filled:hover { -fx-background-color: #fbf1ef; }
+.list-cell:filled:selected { -fx-background-color: #f1e2e3; -fx-text-fill: #4b0b20; -fx-font-weight: 700; }
+.text-area .content { -fx-background-color: #fffefd; }
+.text-area .text { -fx-fill: #493740; }
+.order-total {
+    -fx-font-size: 16px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #4b0b20;
+    -fx-padding: 8 13;
+    -fx-background-color: #f6e9e8;
+    -fx-background-radius: 8;
+}
+.sales-total, .sales-count { -fx-font-size: 25px; -fx-font-weight: 900; -fx-text-fill: #4b0b20; }
+.recipe-result-name { -fx-font-family: "Georgia", serif; -fx-font-size: 14px; -fx-font-weight: 700; -fx-text-fill: #4b0b20; }
+.recipe-result-meta { -fx-font-size: 10px; -fx-text-fill: #8b747d; }
+
+/* Reports and charts */
+.chart {
+    -fx-background-color: #fffdfb;
+    -fx-padding: 12;
+    -fx-background-radius: 12;
+}
+.chart-title { -fx-text-fill: #4b0b20; -fx-font-family: "Georgia", serif; -fx-font-size: 15px; -fx-font-weight: 700; }
+.axis-label { -fx-text-fill: #806e75; }
+.axis { -fx-tick-label-fill: #806e75; }
+.chart-plot-background { -fx-background-color: #fffaf8; }
+.default-color0.chart-bar { -fx-bar-fill: #702039; }
+.default-color1.chart-bar { -fx-bar-fill: #b97988; }
+.default-color2.chart-bar { -fx-bar-fill: #c8a36f; }
+.default-color3.chart-bar { -fx-bar-fill: #8c9d92; }
+.default-color0.chart-series-line { -fx-stroke: #702039; -fx-stroke-width: 3px; }
+.default-color0.chart-line-symbol { -fx-background-color: #fffdfb, #702039; -fx-background-insets: 0, 2; -fx-background-radius: 7px; -fx-padding: 5px; }
+.chart-legend-item { -fx-text-fill: #5d4a52; }
+.separator .line { -fx-border-color: #eadedb; }
+
+/* Login screen: use the bundled restaurant photograph as the actual JavaFX
+   CSS background. Maroon is only a fallback if the image resource is missing. */
+.login-screen {
+    -fx-alignment: center;
+    -fx-padding: 30;
+    -fx-background-color: #3d0b1b;
+    -fx-background-image: url("../images/login-background.jpg");
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+    -fx-background-repeat: no-repeat;
+}
+.login-card {
+    -fx-alignment: center;
+    -fx-spacing: 13;
+    -fx-padding: 34 38 30 38;
+    -fx-background-color: #fffaf5;
+    -fx-background-radius: 19;
+    -fx-border-color: rgba(255,255,255,0.95);
+    -fx-border-radius: 19;
+    -fx-effect: dropshadow(gaussian, rgba(31,7,15,0.34), 28, 0.20, 0, 9);
+}
+.login-brand {
+    -fx-text-fill: #4b0b20;
+    -fx-font-family: "Georgia", serif;
+    -fx-font-size: 31px;
+    -fx-font-weight: 700;
+}
+.login-subtitle {
+    -fx-text-fill: #9b6674;
+    -fx-font-size: 9px;
+    -fx-font-weight: 900;
+    -fx-letter-spacing: 1.2px;
+}
+.login-title {
+    -fx-text-fill: #4b0b20;
+    -fx-font-family: "Georgia", serif;
+    -fx-font-size: 24px;
+    -fx-font-weight: 700;
+    -fx-padding: 10 0 0 0;
+}
+.login-hint { -fx-text-fill: #806e75; }
+.login-error { -fx-text-fill: #a32642; -fx-font-weight: 800; }
+.login-demo { -fx-text-fill: #98878d; -fx-font-size: 9px; -fx-text-alignment: center; -fx-alignment: center; }
+.login-card .text-field, .login-card .password-field {
+    -fx-pref-height: 44px;
+    -fx-font-size: 13px;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #dfcccb;
+}
+.login-card .button {
+    -fx-pref-height: 44px;
+    -fx-font-size: 13px;
+    -fx-background-color: #5a1027;
+}
+.login-card .button:hover { -fx-background-color: #76203a; }
+
+/* Dropdowns, tabs, scrollbars and recipe editor controls */
+.choice-box .context-menu, .context-menu {
+    -fx-background-color: #fffaf7;
+    -fx-background-radius: 8;
+    -fx-border-color: #e4d4d2;
+    -fx-border-radius: 8;
+    -fx-padding: 5;
+}
+.choice-box .menu-item, .context-menu .menu-item { -fx-background-color: #fffaf7; -fx-padding: 8 12; }
+.choice-box .menu-item .label, .context-menu .menu-item .label { -fx-text-fill: #493740; }
+.choice-box .menu-item:focused, .context-menu .menu-item:focused { -fx-background-color: #f1e2e3; }
+.choice-box .menu-item:focused .label, .context-menu .menu-item:focused .label { -fx-text-fill: #4b0b20; }
+.combo-box-popup .list-view { -fx-background-color: #fffaf7; -fx-border-color: #e4d4d2; }
+.combo-box-popup .list-cell { -fx-background-color: #fffaf7; -fx-text-fill: #493740; -fx-padding: 8 12; }
+.combo-box-popup .list-cell:filled:hover, .combo-box-popup .list-cell:filled:selected { -fx-background-color: #f1e2e3; -fx-text-fill: #4b0b20; }
+.tab-pane > .tab-header-area > .tab-header-background { -fx-background-color: #f7eeeb; -fx-border-color: transparent transparent #eadbd8 transparent; }
+.tab-pane > .tab-header-area > .headers-region > .tab {
+    -fx-background-color: #f2e7e5;
+    -fx-background-insets: 0 2 0 0;
+    -fx-background-radius: 8 8 0 0;
+    -fx-border-color: #e5d2d1;
+    -fx-border-radius: 8 8 0 0;
+    -fx-padding: 8 12;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab .tab-label { -fx-text-fill: #6f4a56; -fx-font-weight: 700; }
+.tab-pane > .tab-header-area > .headers-region > .tab:selected { -fx-background-color: #5a1027; -fx-border-color: #5a1027; }
+.tab-pane > .tab-header-area > .headers-region > .tab:selected .tab-label { -fx-text-fill: #ffffff; }
+.tab-pane > .tab-header-area > .headers-region > .tab:hover { -fx-background-color: #ead8d8; }
+.tab-pane > .tab-content-area { -fx-background-color: #fffdfb; }
+.recipe-text-area, .text-area.recipe-text-area {
+    -fx-background-color: #fffefd;
+    -fx-control-inner-background: #fffefd;
+    -fx-text-fill: #493740;
+    -fx-prompt-text-fill: #aa989f;
+    -fx-border-color: #e3d4d1;
+    -fx-border-radius: 9;
+    -fx-background-radius: 9;
+}
+.recipe-text-area .content { -fx-background-color: #fffefd; }
+.recipe-text-area .text { -fx-fill: #493740; }
+.scroll-bar:vertical, .scroll-bar:horizontal { -fx-background-color: transparent; }
+.scroll-bar .thumb { -fx-background-color: #d4bdc1; -fx-background-radius: 8; }
+
+
+/* High-contrast sidebar overrides. These selectors intentionally outrank the generic .label rule above. */
+.sidebar {
+    -fx-background-color: #4b0d22;
+    -fx-border-color: transparent #743047 transparent transparent;
+}
+.sidebar .brand-name { -fx-text-fill: #fffaf6; }
+.sidebar .brand-caption {
+    -fx-text-fill: #f2dce2;
+    -fx-font-size: 9px;
+    -fx-font-weight: 800;
+}
+.sidebar .brand-block {
+    -fx-border-color: transparent transparent #875064 transparent;
+}
+.sidebar .nav-section-label {
+    -fx-text-fill: #f5dfe5;
+    -fx-font-size: 10px;
+    -fx-font-weight: 900;
+}
+.sidebar .nav-button {
+    -fx-background-color: #681a34;
+    -fx-border-color: #85354e;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-text-fill: #fffaf7;
+    -fx-padding: 12 13;
+}
+.sidebar .nav-button .nav-caption {
+    -fx-text-fill: #fffaf7;
+    -fx-font-size: 12px;
+    -fx-font-weight: 800;
+}
+.sidebar .nav-button .nav-icon {
+    -fx-text-fill: #ffe8ed;
+    -fx-font-size: 16px;
+}
+.sidebar .nav-button:hover {
+    -fx-background-color: #87304c;
+    -fx-border-color: #b66b7f;
+}
+.sidebar .nav-button:hover .nav-caption,
+.sidebar .nav-button:hover .nav-icon { -fx-text-fill: #ffffff; }
+.sidebar .nav-button-active,
+.sidebar .nav-button-active:hover {
+    -fx-background-color: #fff3e9;
+    -fx-border-color: #fff3e9;
+    -fx-text-fill: #4b0b20;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.22), 9, 0, 0, 2);
+}
+.sidebar .nav-button-active .nav-caption,
+.sidebar .nav-button-active .nav-icon,
+.sidebar .nav-button-active:hover .nav-caption,
+.sidebar .nav-button-active:hover .nav-icon {
+    -fx-text-fill: #4b0b20;
+}
+.sidebar .sidebar-footer {
+    -fx-text-fill: #f0dce2;
+    -fx-border-color: #875064 transparent transparent transparent;
+}
+
+/* Keep sign-in type crisp despite the general label color. */
+.login-card .login-brand { -fx-text-fill: #4b0b20; }
+.login-card .login-subtitle { -fx-text-fill: #966170; }
+.login-card .login-title { -fx-text-fill: #4b0b20; }
+.login-card .login-hint { -fx-text-fill: #806e75; }
+.login-card .login-demo { -fx-text-fill: #8f7c83; }
+
+
+/* Ingredient inventory: photographic workspace backdrop. The photo remains
+   visible between the cards while the lightly translucent panels preserve
+   contrast for stock names, quantities, and action controls. */
+.inventory-page-wrapper {
+    -fx-background-color: #f7eee8;
+    -fx-background-image: url("../images/inventory-page-background.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+    -fx-background-size: cover;
+}
+.inventory-page-wrapper .page-content {
+    -fx-background-color: transparent;
+}
+.inventory-page-wrapper .page-hero {
+    -fx-background-color: rgba(255, 253, 251, 0.90);
+}
+.inventory-page-wrapper .content-card {
+    -fx-background-color: rgba(255, 253, 251, 0.91);
+}
+
+/* Dashboard feature tiles: explicitly outrank the general burgundy .button rule.
+   The text sits on ivory cards, never directly on a burgundy button surface. */
+.button.feature-card {
+    -fx-background-color: #fffdfb;
+    -fx-text-fill: #4b0b20;
+    -fx-background-radius: 15;
+    -fx-border-color: #eadbd8;
+    -fx-border-radius: 15;
+    -fx-border-width: 1;
+    -fx-padding: 0;
+}
+.button.feature-card:hover {
+    -fx-background-color: #fff9f6;
+    -fx-border-color: #c89eaa;
+}
+.button.feature-card:pressed {
+    -fx-background-color: #f4e8e6;
+}
+.feature-card-title { -fx-text-fill: #4b0b20; }
+.feature-card-description { -fx-text-fill: #644852; -fx-font-size: 10px; }
+
+/* The Home dashboard uses photography behind clear ivory content panels. */
+.dashboard-page-wrapper {
+    -fx-background-color: #f8eee8;
+    -fx-background-image: url("../images/welcome-background.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+    -fx-background-size: cover;
+}
+.dashboard-page-wrapper .page-content { -fx-background-color: transparent; }
+.dashboard-page-wrapper .page-hero { -fx-background-color: rgba(255,253,251,0.94); }
+.dashboard-page-wrapper .content-card { -fx-background-color: rgba(255,253,251,0.95); }
+
+/* Saved menu photos: clear dish image, name, category and price on ivory cards. */
+.menu-item-photo-card {
+    -fx-background-color: #fffdfb;
+    -fx-background-radius: 13;
+    -fx-border-color: #eadbd8;
+    -fx-border-radius: 13;
+    -fx-effect: dropshadow(gaussian, rgba(67,25,40,0.10), 10, 0, 0, 3);
+}
+.menu-item-photo-name {
+    -fx-text-fill: #4b0b20;
+    -fx-font-family: "Georgia", serif;
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+}
+.menu-item-photo-category {
+    -fx-text-fill: #765d66;
+    -fx-font-size: 9px;
+    -fx-font-weight: 800;
+}
+.menu-item-photo-price {
+    -fx-text-fill: #5a1027;
+    -fx-font-size: 13px;
+    -fx-font-weight: 900;
+}
+.menu-photo-hint, .menu-gallery-empty {
+    -fx-text-fill: #735b64;
+    -fx-font-size: 11px;
+}
+
+
+
+/* When no exact recipe photo is available, show a neutral prompt instead of an unrelated dish. */
+.menu-photo-placeholder {
+    -fx-background-color: #f5ece8;
+    -fx-background-radius: 12;
+    -fx-border-color: #e6d2cf;
+    -fx-border-radius: 12;
+    -fx-border-style: dashed;
+}
+.menu-photo-placeholder-text {
+    -fx-text-fill: #6b3a49;
+    -fx-font-size: 11px;
+    -fx-padding: 10px;
+}

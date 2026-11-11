@@ -1,0 +1,31 @@
+name: DineSmart CI
+
+on:
+  push:
+    branches: [ main, codes, 'feature/**' ]
+  pull_request:
+    branches: [ main, codes ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Build and run JUnit tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+      - name: Run tests
+        run: mvn --batch-mode --no-transfer-progress clean test
+      - name: Upload Surefire reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dinesmart-test-reports
+          path: target/surefire-reports/
+          if-no-files-found: ignore
