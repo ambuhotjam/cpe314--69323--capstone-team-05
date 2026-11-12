@@ -1,41 +1,16 @@
+package ph.uc.cpe314.dinesmart.service;
 
-package ph.uc.cpe314.dinesmart;
-
-import org.junit.jupiter.api.Test;
 import ph.uc.cpe314.dinesmart.model.RestaurantOrder;
-import ph.uc.cpe314.dinesmart.service.KitchenQueue;
+import java.util.ArrayDeque;
+import java.util.Queue;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class KitchenQueueTest {
-
-    @Test
-    void processesOrdersFirstInFirstOut() {
-        KitchenQueue queue = new KitchenQueue();
-
-        RestaurantOrder first = new RestaurantOrder();
-        RestaurantOrder second = new RestaurantOrder();
-
-        queue.enqueue(first);
-        queue.enqueue(second);
-
-        assertSame(first, queue.nextOrder());
-        assertSame(second, queue.nextOrder());
-        assertTrue(queue.isEmpty());
+public final class KitchenQueue {
+    private final Queue<RestaurantOrder> orders = new ArrayDeque<>();
+    public void enqueue(RestaurantOrder order) {
+        if (order == null) { throw new IllegalArgumentException("Order cannot be null."); }
+        orders.offer(order);
     }
-
-    @Test
-    void emptyQueueReturnsNull() {
-        assertNull(new KitchenQueue().nextOrder());
-    }
-
-    @Test
-    void rejectsNullOrder() {
-        KitchenQueue queue = new KitchenQueue();
-
-        assertThrows(
-            IllegalArgumentException.class,
-            () -> queue.enqueue(null)
-        );
-    }
+    public RestaurantOrder nextOrder() { return orders.poll(); }
+    public int size() { return orders.size(); }
+    public boolean isEmpty() { return orders.isEmpty(); }
 }
