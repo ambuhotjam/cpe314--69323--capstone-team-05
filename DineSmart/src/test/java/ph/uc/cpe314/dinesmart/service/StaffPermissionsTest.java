@@ -84,6 +84,42 @@ class StaffPermissionsTest {
         assertFalse(StaffPermissions.canCreateMenuItems(role));
     }
 
+    @Test
+    void operationalRolesCannotPerformActionsAssignedToOtherRoles() {
+        assertAll(
+                () -> assertFalse(StaffPermissions.can("WAITER",
+                        StaffPermissions.Action.MARK_ORDER_PAID)),
+                () -> assertFalse(StaffPermissions.can("WAITER",
+                        StaffPermissions.Action.PREPARE_ORDER)),
+                () -> assertFalse(StaffPermissions.can("WAITER",
+                        StaffPermissions.Action.MANAGE_STOCK)),
+                () -> assertFalse(StaffPermissions.can("CASHIER",
+                        StaffPermissions.Action.CREATE_ORDER)),
+                () -> assertFalse(StaffPermissions.can("CASHIER",
+                        StaffPermissions.Action.MARK_ORDER_SERVED)),
+                () -> assertFalse(StaffPermissions.can("CASHIER",
+                        StaffPermissions.Action.PREPARE_ORDER)),
+                () -> assertFalse(StaffPermissions.can("KITCHEN",
+                        StaffPermissions.Action.CREATE_ORDER)),
+                () -> assertFalse(StaffPermissions.can("KITCHEN",
+                        StaffPermissions.Action.MARK_ORDER_PAID)),
+                () -> assertFalse(StaffPermissions.can("KITCHEN",
+                        StaffPermissions.Action.MARK_ORDER_SERVED)),
+                () -> assertFalse(StaffPermissions.can("KITCHEN",
+                        StaffPermissions.Action.MANAGE_STOCK)),
+                () -> assertFalse(StaffPermissions.can("GUEST",
+                        StaffPermissions.Action.VIEW_REPORTS))
+        );
+    }
+
+    @Test
+    void supervisorCanPerformEveryOperationalAction() {
+        for (StaffPermissions.Action action : StaffPermissions.Action.values()) {
+            assertTrue(StaffPermissions.can("SUPERVISOR", action),
+                    "Supervisor should be allowed: " + action);
+        }
+    }
+
     @Test void roleNamesAreCaseInsensitiveAndUnknownRolesAreDeniedByDefault() {
         assertTrue(StaffPermissions.canViewCashier(" cashier "));
         assertFalse(StaffPermissions.canViewDashboard("GUEST"));

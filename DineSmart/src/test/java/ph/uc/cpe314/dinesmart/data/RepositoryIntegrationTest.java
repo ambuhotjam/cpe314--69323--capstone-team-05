@@ -34,7 +34,7 @@ class RepositoryIntegrationTest {
 
     private long addMenu(String name) throws Exception {
         try (Connection c=Database.connect(); PreparedStatement ps=c.prepareStatement(
-                "INSERT INTO menu_items(name,item_type,price,base_prep_minutes,available_today,daily_menu_date) VALUES(?,'MAIN_COURSE',250,15,0,NULL)")) {
+                "INSERT INTO menu_items(name,item_type,price,price_cents,base_prep_minutes,available_today,daily_menu_date) VALUES(?,'MAIN_COURSE',250,25000,15,0,NULL)")) {
             ps.setString(1,name); ps.executeUpdate();
         }
         try (Connection c=Database.connect(); PreparedStatement ps=c.prepareStatement("SELECT menu_item_id FROM menu_items WHERE name=?")) {
@@ -56,7 +56,7 @@ class RepositoryIntegrationTest {
             order.executeUpdate();
         }
         try (Connection c = Database.connect();
-             PreparedStatement item = c.prepareStatement("INSERT INTO order_items(order_id,menu_item_id,quantity,unit_price_at_order) VALUES(?,?,1,250)")) {
+             PreparedStatement item = c.prepareStatement("INSERT INTO order_items(order_id,menu_item_id,quantity,unit_price_at_order,unit_price_cents) VALUES(?,?,1,250,25000)")) {
             item.setString(1, orderId);
             item.setLong(2, menuId);
             item.executeUpdate();
@@ -68,7 +68,7 @@ class RepositoryIntegrationTest {
         Path photoFile = tempDir.resolve("grilled-salmon.jpg");
         Files.write(photoFile, new byte[] {(byte) 0xFF, (byte) 0xD8, 1, 2, 3});
         String photoPath = photoFile.toString();
-        repo.insert(new MainCourse("Grilled Salmon Photo Test", 429.00, 20), photoPath);
+        repo.insert(new MainCourse("Grilled Salmon Photo Test", 42900L, 20), photoPath);
 
         // A new repository instance models reopening the saved menu gallery.
         var saved = new MenuItemRepository().findMenuCards().stream()
@@ -76,20 +76,20 @@ class RepositoryIntegrationTest {
                 .findFirst().orElseThrow();
         assertEquals(photoPath, saved.imagePath());
         assertTrue(Files.isRegularFile(Path.of(saved.imagePath())));
-        assertEquals(429.00, saved.price(), 0.001);
+        assertEquals(42900L, saved.priceCents());
 
         // Updating an existing dish without uploading a replacement keeps its photo.
-        repo.insert(new MainCourse("Grilled Salmon Photo Test", 449.00, 22), null);
+        repo.insert(new MainCourse("Grilled Salmon Photo Test", 44900L, 22), null);
         var updated = new MenuItemRepository().findMenuCards().stream()
                 .filter(item -> item.name().equals("Grilled Salmon Photo Test"))
                 .findFirst().orElseThrow();
         assertEquals(photoPath, updated.imagePath());
-        assertEquals(449.00, updated.price(), 0.001);
+        assertEquals(44900L, updated.priceCents());
     }
 
     @Test void exactMealDbPhotoCanBeBackfilledAndPersistsWithMealId() throws Exception {
         MenuItemRepository repo = new MenuItemRepository();
-        long id = repo.insert(new MainCourse("Spicy Arrabiata Penne", 650.00, 15), null, null);
+        long id = repo.insert(new MainCourse("Spicy Arrabiata Penne", 65000L, 15), null, null);
         String localPhoto = tempDir.resolve("spicy-arrabiata-penne-themealdb-52771.jpg").toString();
         assertTrue(repo.updateMealDbPhoto(id, localPhoto, "52771", null));
 
@@ -150,7 +150,7 @@ class RepositoryIntegrationTest {
     @Test void dishWithOrderHistoryIsArchivedAndHistoryIsPreserved() throws Exception {
         MenuItemRepository repo=new MenuItemRepository(); long menuId=addMenu("Ordered Pasta");
         try(Connection c=Database.connect(); PreparedStatement order=c.prepareStatement("INSERT INTO restaurant_orders(order_id,ordered_at,status) VALUES('TEST-ORDER','2026-01-01 12:00','COMPLETED')")) { order.executeUpdate(); }
-        try(Connection c=Database.connect(); PreparedStatement item=c.prepareStatement("INSERT INTO order_items(order_id,menu_item_id,quantity,unit_price_at_order) VALUES('TEST-ORDER',?,1,250)")) { item.setLong(1,menuId); item.executeUpdate(); }
+        try(Connection c=Database.connect(); PreparedStatement item=c.prepareStatement("INSERT INTO order_items(order_id,menu_item_id,quantity,unit_price_at_order,unit_price_cents) VALUES('TEST-ORDER',?,1,250,25000)")) { item.setLong(1,menuId); item.executeUpdate(); }
         assertTrue(repo.deleteByName("Ordered Pasta"));
         assertFalse(repo.findAllSummaries().stream().anyMatch(s->s.contains("Ordered Pasta")));
         try(Connection c=Database.connect(); PreparedStatement ps=c.prepareStatement("SELECT COUNT(*) FROM order_items WHERE order_id='TEST-ORDER'" ); ResultSet rs=ps.executeQuery()) { assertTrue(rs.next()); assertEquals(1,rs.getInt(1)); }
@@ -351,6 +351,64 @@ class RepositoryIntegrationTest {
         }
         try(Connection c=Database.connect(); PreparedStatement ps=c.prepareStatement("SELECT quantity_change FROM ingredient_movements WHERE order_id=?")) {
             ps.setString(1,orderId); try(ResultSet rs=ps.executeQuery()){assertTrue(rs.next());assertEquals(-500d,rs.getDouble(1),0.0001);}
+        }
+    }
+
+    @Test void recursiveIngredientCalculationAggregatesSharedIngredientsAcrossOrderLines() throws Exception {
+        addOrderableMenu("Recursive Chicken Pasta", 18500L, 12);
+        addOrderableMenu("Recursive Chicken Rice", 16500L, 10);
+
+        IngredientRepository ingredients = new IngredientRepository();
+        ingredients.save("Recursive Shared Chicken", 1000, "g");
+        ingredients.setRecipeRequirement("Recursive Chicken Pasta", "Recursive Shared Chicken", 150, "g");
+        ingredients.setRecipeRequirement("Recursive Chicken Rice", "Recursive Shared Chicken", 200, "g");
+
+        OrderRepository orders = new OrderRepository();
+        String orderId = orders.placeOrder("Recursive Calculator Customer", java.util.Map.of(
+                "Recursive Chicken Pasta", 2,
+                "Recursive Chicken Rice", 1));
+
+        // 2 servings x 150 g + 1 serving x 200 g = 500 g total.
+        assertEquals(500d, ingredientQuantity("Recursive Shared Chicken"), 0.0001);
+        try (Connection c = Database.connect();
+             PreparedStatement ps = c.prepareStatement("""
+                     SELECT COUNT(*), SUM(quantity_change)
+                     FROM ingredient_movements
+                     WHERE order_id = ? AND reason = 'ORDER_USAGE'
+                     """)) {
+            ps.setString(1, orderId);
+            try (ResultSet rs = ps.executeQuery()) {
+                assertTrue(rs.next());
+                assertEquals(1, rs.getInt(1), "A shared ingredient is recorded once for the order.");
+                assertEquals(-500d, rs.getDouble(2), 0.0001);
+            }
+        }
+    }
+
+    @Test void recursiveIngredientCalculationRollsBackWhenCombinedOrderNeedsTooMuchStock() throws Exception {
+        addOrderableMenu("Recursive Low Stock Pasta", 18500L, 12);
+        addOrderableMenu("Recursive Low Stock Rice", 16500L, 10);
+
+        IngredientRepository ingredients = new IngredientRepository();
+        ingredients.save("Recursive Low Stock Chicken", 550, "g");
+        ingredients.setRecipeRequirement("Recursive Low Stock Pasta", "Recursive Low Stock Chicken", 200, "g");
+        ingredients.setRecipeRequirement("Recursive Low Stock Rice", "Recursive Low Stock Chicken", 200, "g");
+
+        OrderRepository orders = new OrderRepository();
+        assertThrows(IllegalStateException.class, () -> orders.placeOrder(
+                "Recursive Insufficient Stock Customer", java.util.Map.of(
+                        "Recursive Low Stock Pasta", 2,
+                        "Recursive Low Stock Rice", 1)));
+
+        assertEquals(550d, ingredientQuantity("Recursive Low Stock Chicken"), 0.0001);
+        try (Connection c = Database.connect();
+             PreparedStatement ps = c.prepareStatement(
+                     "SELECT COUNT(*) FROM restaurant_orders WHERE customer_name = ?")) {
+            ps.setString(1, "Recursive Insufficient Stock Customer");
+            try (ResultSet rs = ps.executeQuery()) {
+                assertTrue(rs.next());
+                assertEquals(0, rs.getInt(1), "The failed order transaction must be rolled back.");
+            }
         }
     }
 
@@ -559,15 +617,16 @@ class RepositoryIntegrationTest {
     }
 
 
-    private long addOrderableMenu(String name, double price, int prepMinutes) throws Exception {
+    private long addOrderableMenu(String name, long priceCents, int prepMinutes) throws Exception {
         try (Connection c = Database.connect(); PreparedStatement ps = c.prepareStatement("""
-                INSERT INTO menu_items(name,item_type,price,base_prep_minutes,
+                INSERT INTO menu_items(name,item_type,price,price_cents,base_prep_minutes,
                                         available_today,daily_menu_date)
-                VALUES(?,'MAIN_COURSE',?,?,1,date('now','localtime'))
+                VALUES(?,'MAIN_COURSE',CAST(? AS REAL),?,?,1,date('now','localtime'))
                 """)) {
             ps.setString(1, name);
-            ps.setDouble(2, price);
-            ps.setInt(3, prepMinutes);
+            ps.setString(2, ph.uc.cpe314.dinesmart.util.Money.toDatabaseDecimal(priceCents));
+            ps.setLong(3, priceCents);
+            ps.setInt(4, prepMinutes);
             ps.executeUpdate();
         }
         try (Connection c = Database.connect();
@@ -581,10 +640,31 @@ class RepositoryIntegrationTest {
     }
 
     @Test void fullOrderWorkflowMovesFromPendingThroughKitchenServiceAndPayment() throws Exception {
-        addOrderableMenu("Workflow Chicken Pasta", 185.00, 12);
+        addOrderableMenu("Workflow Chicken Pasta", 18500L, 12);
         OrderRepository repo = new OrderRepository();
-        String orderId = repo.placeOrder("Workflow Customer", java.util.Map.of("Workflow Chicken Pasta", 2));
+        AuthRepository auth = new AuthRepository();
+        long staffId = auth.createStaffUser("workflowwaiter", "workflow123",
+                "Workflow Waiter", "WAITER");
+        String orderId = repo.placeOrder("Workflow Customer",
+                java.util.Map.of("Workflow Chicken Pasta", 2), "Table 5", staffId);
 
+        try (Connection c = Database.connect();
+             PreparedStatement ps = c.prepareStatement("""
+                     SELECT o.table_id, o.created_by, t.table_label
+                     FROM restaurant_orders o
+                     LEFT JOIN restaurant_tables t ON t.table_id = o.table_id
+                     WHERE o.order_id = ?
+                     """)) {
+            ps.setString(1, orderId);
+            try (ResultSet rs = ps.executeQuery()) {
+                assertTrue(rs.next());
+                assertEquals(staffId, rs.getLong("created_by"));
+                assertEquals("Table 5", rs.getString("table_label"));
+                assertTrue(rs.getLong("table_id") > 0);
+            }
+        }
+        assertTrue(repo.findOrdersCreatedByToday(staffId).stream()
+                .anyMatch(row -> row.contains(orderId)));
         assertTrue(repo.findKitchenQueue().stream().anyMatch(row -> row.contains(orderId) && row.contains("PENDING")));
         repo.changeStatus(orderId, "PREPARING");
         assertTrue(repo.findKitchenQueue().stream().anyMatch(row -> row.contains(orderId) && row.contains("PREPARING")));
@@ -606,7 +686,9 @@ class RepositoryIntegrationTest {
         assertFalse(repo.findKitchenQueue().stream().anyMatch(row -> row.contains(orderId)));
         assertFalse(repo.findOrdersReadyToServe().stream().anyMatch(row -> row.contains(orderId)));
         assertTrue(new OrderRepository().findCashierTotals().stream()
-                .anyMatch(row -> row.contains(orderId) && row.contains("PAYMENT: PAID") && row.contains("₱370.00")));
+                .anyMatch(row -> row.contains(orderId) && row.contains("PAYMENT: PAID")
+                        && row.contains("₱370.00")));
+        assertEquals(37000L, repo.getTodaySalesByStaffCents().get("Workflow Waiter").longValue());
     }
 
     @Test void paymentCanBeRecordedBeforeKitchenCompletionWithoutRemovingActiveOrder() throws Exception {
@@ -700,7 +782,7 @@ class RepositoryIntegrationTest {
     }
 
     @Test void cancellingAnOrderRestoresDeductedIngredientsExactlyOnce() throws Exception {
-        addOrderableMenu("Cancellation Stock Dish", 99.00, 5);
+        addOrderableMenu("Cancellation Stock Dish", 9900L, 5);
         IngredientRepository ingredients = new IngredientRepository();
         ingredients.save("Cancellation Test Rice", 500, "g");
         ingredients.setRecipeRequirement("Cancellation Stock Dish", "Cancellation Test Rice", 100, "g");
@@ -710,6 +792,24 @@ class RepositoryIntegrationTest {
 
         repo.cancelPendingOrder(orderId);
         assertEquals(500d, ingredientQuantity("Cancellation Test Rice"), 0.0001);
+        try (Connection c = Database.connect();
+             PreparedStatement ps = c.prepareStatement("""
+                     SELECT reason, quantity_change
+                     FROM ingredient_movements
+                     WHERE order_id = ?
+                     ORDER BY movement_id
+                     """)) {
+            ps.setString(1, orderId);
+            try (ResultSet rs = ps.executeQuery()) {
+                assertTrue(rs.next());
+                assertEquals("ORDER_USAGE", rs.getString("reason"));
+                assertEquals(-200d, rs.getDouble("quantity_change"), 0.0001);
+                assertTrue(rs.next());
+                assertEquals("ORDER_CANCEL_RESTORE", rs.getString("reason"));
+                assertEquals(200d, rs.getDouble("quantity_change"), 0.0001);
+                assertFalse(rs.next());
+            }
+        }
         assertThrows(IllegalStateException.class, () -> repo.cancelPendingOrder(orderId));
         assertEquals(500d, ingredientQuantity("Cancellation Test Rice"), 0.0001);
     }
@@ -734,7 +834,7 @@ class RepositoryIntegrationTest {
             ps.executeUpdate();
         }
         OrderRepository repo = new OrderRepository();
-        assertEquals(500.00, repo.getTodaySales(), 0.001);
+        assertEquals(50000L, repo.getTodaySalesCents());
         assertEquals(1, repo.getTodayOrderCount());
         assertTrue(repo.findBestSellers(5).stream().anyMatch(item ->
                 item.name().equals("Report Completed Dish") && item.quantity() == 2));
@@ -753,14 +853,48 @@ class RepositoryIntegrationTest {
     }
 
     @Test void menuOrderKeepsTheOriginalPriceEvenIfTheCatalogPriceChangesLater() throws Exception {
-        addOrderableMenu("Historical Price Dish", 150.00, 8);
+        addOrderableMenu("Historical Price Dish", 15000L, 8);
         String orderId = new OrderRepository().placeOrder("Price Snapshot Customer",
                 java.util.Map.of("Historical Price Dish", 2));
-        new MenuItemRepository().updatePriceByName("Historical Price Dish", 175.00);
+        new MenuItemRepository().updatePriceByName("Historical Price Dish", 17500L);
         assertTrue(new OrderRepository().findCashierTotals().stream()
                 .anyMatch(row -> row.contains(orderId) && row.contains("₱300.00")));
         assertTrue(new MenuItemRepository().findAllPriceSummaries().stream()
                 .anyMatch(row -> row.contains("Historical Price Dish") && row.contains("₱175.00")));
+    }
+
+
+
+    @Test
+    void menuCategoryFrequencyReturnsEveryCategoryIncludingZeroCounts() throws Exception {
+        addOrderableMenu("Category Main Dish", 2500L, 10);
+        try (Connection c = Database.connect();
+             PreparedStatement ps = c.prepareStatement("""
+                     INSERT INTO menu_items
+                         (name, item_type, price, price_cents, base_prep_minutes,
+                          available_today, daily_menu_date)
+                     VALUES ('Category Starter', 'APPETIZER', 75, 7500, 5, 1,
+                             date('now','localtime'))
+                     """)) {
+            ps.executeUpdate();
+        }
+
+        var counts = new MenuItemRepository().countByItemType();
+
+        assertEquals(1, counts.get("MAIN_COURSE").intValue());
+        assertEquals(1, counts.get("APPETIZER").intValue());
+        assertEquals(0, counts.get("BEVERAGE").intValue());
+    }
+
+    @Test
+    void orderTotalsUseExactIntegerCentsInsteadOfFloatingPoint() throws Exception {
+        addOrderableMenu("Exact Cent Dish", 310L, 5);
+        OrderRepository repository = new OrderRepository();
+        String orderId = repository.placeOrder("Exact Cent Customer",
+                java.util.Map.of("Exact Cent Dish", 3));
+
+        assertTrue(repository.findCashierTotals().stream()
+                .anyMatch(row -> row.contains(orderId) && row.contains("₱9.30")));
     }
 
     @Test void reservationCannotDoubleBookTheSameNamedTableAtTheSameTime() throws Exception {
@@ -769,6 +903,18 @@ class RepositoryIntegrationTest {
         IllegalStateException error = assertThrows(IllegalStateException.class,
                 () -> repo.create("Second Guest", "", 3, "2026-12-22T18:00", "table 4", ""));
         assertTrue(error.getMessage().toLowerCase().contains("already reserved"));
+        var saved = repo.findUpcoming().stream()
+                .filter(r -> r.table().equals("Table 4")).findFirst().orElseThrow();
+        assertNotNull(saved.tableId());
+        try (Connection c = Database.connect();
+             PreparedStatement ps = c.prepareStatement(
+                     "SELECT table_label FROM restaurant_tables WHERE table_id = ?")) {
+            ps.setLong(1, saved.tableId());
+            try (ResultSet rs = ps.executeQuery()) {
+                assertTrue(rs.next());
+                assertEquals("Table 4", rs.getString(1));
+            }
+        }
         assertEquals(1, repo.findUpcoming().stream().filter(r -> r.table().equals("Table 4")).count());
     }
 

@@ -18,18 +18,18 @@ class MenuItemRepositoryValidationTest {
     @Test
     void updatePriceRejectsMissingName() {
         assertThrows(IllegalArgumentException.class,
-                () -> repository.updatePriceByName(" ", 100.0));
+                () -> repository.updatePriceByName(" ", 10000L));
     }
 
     @Test
     void updatePriceRejectsZeroPrice() {
         assertThrows(IllegalArgumentException.class,
-                () -> repository.updatePriceByName("Garlic Bread", 0.0));
+                () -> repository.updatePriceByName("Garlic Bread", 0L));
     }
 
     @Test
-    void updatePriceRejectsNotANumber() {
+    void updatePriceRejectsNegativePrice() {
         assertThrows(IllegalArgumentException.class,
-                () -> repository.updatePriceByName("Garlic Bread", Double.NaN));
+                () -> repository.updatePriceByName("Garlic Bread", -1L));
     }
 }

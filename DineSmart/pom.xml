@@ -73,6 +73,7 @@
                 <version>3.2.5</version>
                 <configuration>
                     <useModulePath>false</useModulePath>
+                    <argLine>--add-modules jdk.httpserver</argLine>
                 </configuration>
             </plugin>
 
