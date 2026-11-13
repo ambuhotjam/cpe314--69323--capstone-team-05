@@ -1,55 +1,71 @@
-## ONE-PARAGRAPH PITCH
-
-The Restaurant Ordering & Inventory Insights is a JavaFX desktop application designed for small restaurants and campus canteens that need an efficient way to manage orders and ingredient inventory. The application will manage menu items, nested meal combos, and the kitchen order queue while integrating with TheMealDB to import real recipe information. It will use SQLite to store records and generate charts showing best-selling menu items and peak ordering hours, helping staff improve food preparation and inventory management.
 
 
+| **Group Name / No.:** | Group 5 |
+|---|---|
+| **Members:** | Kiro Del Rosario - Team Leader <br> Jamaica Ambuhot - Developer 1 <br> Janine Ebrado - Developer 2 <br> Josiela Yap - User Interface (UI) <br> Vincent Hayag - DB Admin <br> Ben Justin Lajot - Quality Assurance (QA) |
+| **Repository URL:** | https://github.com/ambuhotjam/cpe314--69323--capstone-team-05.git |
+| **Theme:** | Restaurant Ordering & Inventory Insights |
+| **API You Will Use:** | TheMealDB — https://www.themealdb.com/api/json/v1/1/ |
 
-## ENTITY-RELATIONSHIP SKETCH
 
 
-<img width="4008" height="3168" alt="image" src="https://github.com/user-attachments/assets/d84a0066-fac9-4fba-89e4-9881149f5ac2" />
+
+
+
+## 1. ONE-PARAGRAPH PITCH
+DineSmart is a Java-based restaurant management system designed to help restaurant staff manage menu items, customer orders, table reservations, ingredients, and sales reports. It uses SQLite to store restaurant data and TheMealDB API to access recipes from different international cuisines. The system helps reduce manual work, improve order processing, and monitor ingredient availability. Its target users are restaurant owners, supervisors, cashiers, waiters, and kitchen staff.
+
+
+## 2. ENTITY-RELATIONSHIP SKETCH
+<img width="5008" height="6688" alt="image" src="https://github.com/user-attachments/assets/1f3d8b66-ea66-476e-a2de-1dc5104787af" />
 <p align="center">
-  <em>Figure 1: Restaurant Ordering & Inventory System Diagram</em>
+  <em>Figure 1:Preliminary Entity-Relationship Sketch of DineSmart</em>
 </p>
 
 
+## 3. FEATURE CHECKLIST
 
-## Feature Checklist
-
+**Table 1: DineSmart Planned Features and Corresponding Requirements**
 
 | Planned Feature | Requirement(s) It Satisfies |
-| :--- | :--- |
-| MenuItem abstract class with Appetizer, MainCourse and Beverage subclasses; different preparation estimates; separate services. | Object-Oriented Design |
-| FIFO kitchen Queue, latest-pending-order Stack, and recursive total for combos nested at any depth; reject cycles. | Data Structure / Recursion |
-| At least 6 JUnit 5 tests: totals, invalid quantity, FIFO, cancellation, nested combos and insufficient stock. | Automated Testing |
-| Related SQLite tables; JDBC PreparedStatement CRUD and JOIN queries. | Data Modeling + Database |
-| Search TheMealDB and save selected meal names and real ingredient lists after staff review. | API Consumption |
-| JavaFX Place Order, Cancel Latest Pending Order, Search Recipe and Import History controls with handlers. | Event-Driven GUI |
-| Import a large historical order CSV in Task.call(); report progress and update UI on the JavaFX thread. | Concurrency |
-| Aggregate completed item quantities and completed order counts by hour; exclude cancelled orders. | Data Mining |
-| Labeled bar chart of item quantities sold and line chart of orders by hour. | Data Visualization |
-
-
-
-## Task Split
-
-| Member | Primary Responsibility |
 |---|---|
-| Kiro Del Rosario - Team Leader | TheMealDB integration and background CSV-import plan. |
-| Jamaica Ambuhot - Developer 1 | OOD hierarchy and recursive combo pricing plan. |
-| Janine Ebrado - Developer 2 | ER sketch and SQLite/JDBC data-layer plan. |
-| Vincent Hayag - DB Admin | Kitchen Queue, cancellation Stack and stock-flow plan. |
-| Josiela Yap - UI (User Interface) | JavaFX screen sketch and event-handler plan. |
-| Ben Justin Lajot - QA (Quality Assurance) | JUnit test cases, sales aggregation and chart plan. |
-
-## Public API You Plan to Use
-
-TheMealDB (https://www.themealdb.com/api.php): a free recipe API that provides meal names,
-categories, cooking instructions, images, and ingredient lists with measures. We will use the shared free
-test key “1” (no signup) to seed our menu items and their ingredients.
+| Menu Management | CRUD Operations, OOP, Inheritance, and SRP |
+| Customer Ordering and Table Reservations | SQLite Database and Relational Data Management |
+| Kitchen Queue and Pending Orders | FIFO Queue and LIFO Stack |
+| Recursive Ingredient Calculator | Recursion and Ingredient Calculation |
+| Inventory Management | CRUD Operations and SQLite Persistence |
+| TheMealDB Recipe Integration | Public API Integration and JSON Processing |
+| Staff Authentication and Access Control | Authentication, Authorization, and Role-Based Permissions |
+| Background Recipe and Image Loading | Concurrency and Multithreading |
+| Sales Reports and Analytics | Data Mining, Aggregation, and Data Visualization |
+| JavaFX User Interface | Graphical User Interface and Event Handling |
 
 
-## Risks / Open Questions
+
+## 4. TASK SPLIT
+
+**Table 2: Team Members and Responsibilities**
+
+| Member | Role |
+|---|---|
+| Kiro Del Rosario - Team Leader | API integration, authentication, access control, and system integration. |
+| Jamaica Ambuhot - Developer 1 | Menu management, meal categories, recipe management, and menu recommendations. |
+| Janine Ebrado - Developer 2 | SQLite database operations, order processing, and menu data storage. |
+| Vincent Hayag - DB Admin | Kitchen queue, order history, inventory, and reservation management. |
+| Josiela Yap - UI (User Interface) | JavaFX interface design, navigation, and image management. |
+| Ben Justin Lajot - QA (Quality Assurance) | System testing, sales reporting, and data validation. |
+
+
+## 5. PUBLIC API YOU PLAN TO USE
+
+**API Name:** TheMealDB
+
+**Base URL:** https://www.themealdb.com/api/json/v1/1/
+
+TheMealDB is a public API that provides recipes from different cuisines, including meal names, categories, ingredients, cooking instructions, and images. DineSmart uses this API to search for meals, browse recipes by category, and retrieve recipe details for its menu management system.
+
+
+## 6. RISKS / OPEN QUESTIONS
 
 | No. | Risks | Questions |
 | --- | --- | --- |
@@ -72,14 +88,3 @@ test key “1” (no signup) to seed our menu items and their ingredients.
 | 17 | Database query errors | How will you prevent invalid or unsafe database operations? |
 | 18 | Testing failures | How will you verify that each feature works correctly before deployment? |
 
-# cpe314--69323--capstone-team-05
-CPE 314 Capstone Project E — Restaurant Ordering &amp; Inventory Insights
-
-| Members          | Roles       |
-|------------------|-------------|
-| Kiro Del Rosario | Leader      |
-| Janine Ebrado    | Developer 1 |
-| Jamaica Ambuhot  | Developer 2 |
-| Josiela Yap      | UI          |
-| Vincent Hayag    | DB Admin    |
-| Ben Justin Lajot | QA          |
