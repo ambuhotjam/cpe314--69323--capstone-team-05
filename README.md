@@ -166,6 +166,23 @@ Table 4: DineSmart System Components and Responsibilities
 
 DineSmart uses inheritance to allow different menu item categories to share common attributes and behavior. Each subclass is responsible for identifying its own item type, making the code easier to organize and maintain. The application also separates database operations, API requests, and business functions into different classes to reduce repeated code and improve maintainability. This structure supports the Single Responsibility Principle, although the main DineSmartApp class still handles several UI responsibilities.
 
+### 3.5 Data Structures and Recursive Ingredient Calculation
+
+DineSmart uses queues, stacks, and recursion to manage restaurant operations.
+
+- **FIFO Queue:** KitchenQueue and PersistentKitchenQueue process kitchen orders in the order they were received.
+
+- **LIFO Stack:** PendingOrderStack manages pending orders and allows the most recently added order to be removed first.
+
+- **Recursive Ingredient Calculation:** RecursiveIngredientCalculator calculates the total ingredients required for multiple ordered menu items, including shared ingredients.
+
+The recursive method processes one ordered menu item at a time and combines its ingredient requirements with the accumulated totals.
+
+**Base Case:** The recursion stops when all ordered menu items have been processed.
+
+**Recursive Case:** The method processes the current menu item's ingredients and calls itself to process the next ordered item.
+
+
 ## 4. Data Model & Database Design
 
 ### 4.1 Finalized Entity Relationship Sketch
@@ -192,12 +209,12 @@ Table 5: Database Relationships
 | INGREDIENTS | INGREDIENT_MOVEMENTS | One to zero or many |
 | RESTAURANT_ORDERS | INGREDIENT_MOVEMENTS | One to zero or many |
 
-The foreign keys for created_by and the order/reservation table_id fields allow null values. Therefore, an individual order or reservation does not always require an assigned staff member or restaurant table. The ingredient_movements.order_id field is also optional, since inventory changes may occur without an associated order.
+The database uses one-to-many relationships between related tables. Each parent record can be associated with zero or many child records. Some foreign keys, such as restaurant_orders.created_by, restaurant_orders.table_id, table_reservations.table_id, and ingredient_movements.order_id, allow NULL values. This means these child records can exist without being linked to a parent record, while each child record can reference at most one parent.
 
 The database also uses two junction tables to support many-to-many relationships:
 
-- ORDER_ITEMS connects restaurant orders with menu items.
-- MENU_ITEM_INGREDIENTS connects menu items with ingredients.
+- **ORDER_ITEMS** connects restaurant orders with menu items.
+- **MENU_ITEM_INGREDIENTS** connects menu items with ingredients.
 
 
 ### 4.3 Actual SQLite Database Schema
@@ -250,7 +267,9 @@ Table 7: TheMealDB API Endpoints
 
 Base URL: https://www.themealdb.com/api/json/v1/1/
 
-DineSmart maps the Appetizer category to TheMealDB's Starter category. Main Course searches combine several food categories, including Beef, Chicken, Pasta, Seafood, and Vegetarian.
+DineSmart maps the Appetizer category to TheMealDB's Starter category. For Main Course, the system 
+combines ten categories: Beef, Chicken, Goat, Lamb, Miscellaneous, Pasta, Pork, Seafood, Vegan, and 
+Vegetarian.
 
 ### 5.3 JSON Response Structure
 
@@ -275,3 +294,155 @@ Table 8: Concurrency Implementation
 | Platform.runLater() | Updates JavaFX interface components on the UI thread. |
 | TheMealDbService | Retrieves recipe information from the API. |
 | OrderReportRepository | Performs historical order analysis. |
+
+### 6.3 Threading Process
+<img width="1288" height="1688" alt="image" src="https://github.com/user-attachments/assets/be9517f7-1384-44e3-960a-3d650fc2e3ff" />
+<p align="center">
+  <em>Figure 4: Background Threading Process of DineSmart</em>
+</p>
+
+### 6.4 Maintaining UI Responsiveness
+
+DineSmart uses background threads to perform long-running tasks without freezing the JavaFX user interface. The system uses CompletableFuture and ExecutorService to execute tasks separately, while Platform.runLater() safely updates the interface after the task is completed. This allows users to continue interacting with the application while background operations are running.
+
+## 7. Data Mining & Visualization Design
+
+### 7.1 Data Mining Process
+
+DineSmart performs data mining through frequency analysis and data aggregation using records stored in SQLite. The system analyzes menu categories, completed orders, best-selling menu items, and ordering activity to help restaurant staff understand restaurant performance.
+
+### 7.2 Data Aggregation Methods
+
+Table 9: Data Mining and Visualization
+
+| Analysis | Actual aggregation method | Visualization |
+|---|---|---|
+| Menu category frequency | Counts saved menu records in each category. | Bar Chart |
+| Best-selling menu items | Calculates quantities sold from all completed orders. | Bar Chart |
+| Hourly ordering activity | Counts historical non-cancelled orders by hour. | Line Chart |
+| Sales performance | Calculates today's completed-order sales and order count. | Numerical Summary |
+| Staff sales | Groups today's completed-order sales by staff member. | Numerical Summary |
+
+
+### 7.3 Charts Used
+
+#### 7.3.1 Menu Category Frequency — Bar Chart
+
+The system counts saved menu items under the Appetizer, Main Course, and Beverage categories. A bar chart is used to compare the number of stored menu records in each category. The chart represents the menu catalog rather than the number of items currently available for ordering.
+
+<img width="975" height="371" alt="image" src="https://github.com/user-attachments/assets/46d6bc5e-d5e7-47bf-a4c1-5754ffdffb27" />
+<p align="center">
+  <em>Figure 5: Example Menu Category Frequency Chart (Illustrative data only)</em>
+</p>
+
+
+#### 7.3.2 Best-Selling Menu Items — Bar Chart
+
+DineSmart uses completed-order records to calculate the total quantity sold for each menu item. A bar chart is used to compare sales quantities and identify popular food and beverages.
+<img width="975" height="312" alt="image" src="https://github.com/user-attachments/assets/e34d97d2-2f5f-486b-a9ce-426caa535c59" />
+<p align="center">
+  <em>Figure 6: Example Best-Selling Menu Items Chart (Illustrative data only)</em>
+</p>
+
+#### 7.3.3 Hourly Ordering Activity — Line Chart
+
+The system groups non-cancelled restaurant orders according to the hour they were placed. A line chart is used because it clearly shows how order activity changes throughout the day. It helps identify busy hours and periods with fewer orders.
+<img width="975" height="250" alt="image" src="https://github.com/user-attachments/assets/1326e906-151b-4f71-b3ed-c29ddce62368" />
+<p align="center">
+  <em>Figure 7: Example Hourly Ordering Activity Chart (Illustrative data only)</em>
+</p>
+
+
+### 7.4 Purpose of Data Visualization
+
+DineSmart uses charts to present restaurant information in a simple and understandable way. These visualizations help restaurant owners and supervisors review menu category distribution, identify best-selling dishes, review sales performance, and recognize busy ordering hours. The reports support better decisions about menu planning, ingredient preparation, and daily restaurant operations.
+
+## 8. Testing Summary
+
+DineSmart uses JUnit 5 to test the correctness and reliability of its main features. The project contains 15 test classes with 114 test methods, covering database operations, user permissions, order processing, ingredient calculations, API integration, and other system functions.
+
+### 8.1 JUnit Test Cases
+
+Table 10: DineSmart JUnit Test Summary
+
+| Test Class | No. of Tests | Test Coverage and Edge Cases |
+|---|---|---|
+| MenuItemRepositoryValidationTest | 4 | Checks menu item validation, including zero or negative prices. |
+| KitchenQueueTest | 3 | Checks FIFO processing, empty queues, and null orders. |
+| MoneyTest | 2 | Checks money formatting and rejects invalid decimal values. |
+| AuthControllerAuthorizationTest | 1 | Prevents unauthorized staff account management. |
+| OrderControllerAuthorizationTest | 3 | Prevents staff from performing actions outside their assigned roles. |
+| RecursiveIngredientCalculatorTest | 5 | Checks ingredient totals, shared ingredients, invalid quantities, and inconsistent units. |
+| PersistentKitchenQueueTest | 3 | Checks kitchen order queue operations and persistence. |
+| MenuPhotoStorageTest | 6 | Checks photo storage, file validation, and unsupported images. |
+| PendingOrderStackTest | 3 | Checks pending order stack operations. |
+| TheMealDbServiceTest | 9 | Checks API responses, empty results, HTTP errors, timeouts, and invalid JSON. |
+| StaffPermissionsTest | 8 | Checks access permissions for different staff roles. |
+| RepositoryIntegrationTest | 57 | Checks database operations, order processing, inventory, reservations, and reporting. |
+| DatabaseMigrationTest | 2 | Checks database schema updates and migration compatibility. |
+| RecipeMeasureParserTest | 6 | Checks ingredient measurement parsing and unit conversions. |
+| AuthRepositoryTest | 2 | Checks staff authentication, account management, and invalid credentials. |
+| **Total:** | **114** | **15 test classes** |
+
+
+### 8.2 Testing Explanation
+
+The JUnit tests check whether DineSmart processes restaurant information correctly and handles errors properly. For example, the system tests invalid menu prices, unauthorized staff actions, empty orders, insufficient ingredient stock, and unsuccessful API requests. Database integration tests also verify that records and transactions are handled correctly.
+<img width="873" height="332" alt="image" src="https://github.com/user-attachments/assets/68c0d367-3e5f-4efd-bf58-a146da6d2a84" />
+<p align="center">
+  <em>Figure 8: Successful Maven JUnit Test Execution in Eclipse IDE</em>
+</p>
+
+
+## 9. Individual Contributions
+
+Each team member was assigned specific Java files and classes for the development of DineSmart. These contributions cover API integration, object-oriented design, database management, order processing, user interface development, and system testing. The team's contributions can be verified through their GitHub commit history.
+
+### 9.1 Team Member Contributions
+
+Table 11: Individual Contributions to DineSmart
+
+| Team Member | Files/Classes Developed or Owned |
+|---|---|
+| Kiro Del Rosario | AuthController.java, AuthRepository.java, MealDbMealDto.java, ApiResult.java, MealDbMealMapper.java, StaffPermissions.java, TheMealDbService.java, module-info.java |
+| Jamaica Ambuhot | MenuController.java, MenuRecommendationRepository.java, Appetizer.java, Beverage.java, MainCourse.java, MealRecipe.java, MenuItem.java, RecursiveIngredientCalculator.java, Money.java |
+| Janine Ebrado | OrderController.java, Database.java, IngredientRepository.java, MealRecipeRepository.java, MenuItemRepository.java, MenuPeriodRepository.java, OrderRepository.java, RecipeCatalogRepository.java, RecipeMeasureParser.java, ReservationRepository.java, RestaurantOrder.java |
+| Vincent Hayag | InventoryController.java, ReservationController.java, KitchenQueue.java, OrderHistoryStack.java, PendingOrderStack.java, PersistentKitchenQueue.java |
+| Josiela Yap | DineSmartApp.java, MenuPhotoStorage.java |
+| Ben Justin Lajot | ReportController.java, OrderReportRepository.java, KitchenQueueTest.java, MenuItemRepositoryValidationTest.java, AuthControllerAuthorizationTest.java, OrderControllerAuthorizationTest.java, AuthRepositoryTest.java, DatabaseMigrationTest.java, RecipeMeasureParserTest.java, RepositoryIntegrationTest.java, MenuPhotoStorageTest.java, PendingOrderStackTest.java, PersistentKitchenQueueTest.java, RecursiveIngredientCalculatorTest.java, StaffPermissionsTest.java, TheMealDbServiceTest.java, MoneyTest.java |
+
+
+## Appendix
+
+### Appendix A. Development Tools and Technologies
+
+Table 12: Technologies Used in DineSmart
+
+| Technology | Purpose |
+|---|---|
+| Java 17 | Main programming language. |
+| JavaFX 21 | Creates the graphical user interface. |
+| SQLite | Stores and manages restaurant data. |
+| TheMealDB API | Provides recipe information from different cuisines. |
+| JUnit 5 | Tests the system's functions. |
+| Maven | Manages project dependencies and builds. |
+| Git and GitHub | Manages version control and team collaboration. |
+| draw.io (diagrams.net) | Creates the ERD and class hierarchy diagrams. |
+
+### Appendix B. API Reference
+
+DineSmart uses TheMealDB API to retrieve meal information, including recipes, categories, ingredients, cooking instructions, and images.
+
+**Official API Documentation:** https://www.themealdb.com/api.php
+
+### Appendix C. Supporting Documents
+
+The following materials support the design and development of DineSmart:
+
+- **Entity-Relationship Diagram (ERD)** — Created using draw.io and presented in Sections 2 and 4.
+- **Class Hierarchy Diagram** — Created using draw.io and presented in Section 3.
+- **SQLite Database Schema** — Defined in Database.java and discussed in Section 4.3.
+- **JUnit Test Files** — Contain automated tests for the system's functions, discussed in Section 8.
+- **Project Source Code** — Contains the Java files used to develop DineSmart.
+
+**GitHub Repository:** https://github.com/ambuhotjam/cpe314--69323--capstone-team-05.git
