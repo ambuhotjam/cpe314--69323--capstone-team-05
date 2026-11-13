@@ -99,7 +99,7 @@ Revision History ---------------------------------------------------------------
 | | October 25, 2026 | **Ambuhot** - Introduction <br> **Ebrado** - ER Sketch <br> **Yap** - Feature Checklist <br> **Del Rosario** - Task Split <br> **Hayag** - The Public API <br> **Lajot** - Risk/Questions | Completed the Week 8 project proposal, including the introduction, ER sketch, feature checklist, task split, public API, and risks/questions. |
 | 0.2 | October 26, 2026 | **Yap & Hayag** - Class Hierarchy Diagram/Description <br> **Ambuhot** - SRP Justification <br> **Ebrado** - Finalized ERD <br> **Del Rosario & Lajot** - Schema Description | Added Week 9 design and documentation sections, including the Class Hierarchy Diagram, SRP Justification, Finalized ERD, and Schema Description. |
 | 0.3 | November 03, 2026 | **Ebrado & Ambuhot** <br> Section 5 — API Integration Design Written <br><br> **Yap & Hayag** <br> Section 6 — Concurrency Design Written <br><br> **Del Rosario & Lajot** <br> Section 7 — Data Mining & Visualization Design Written | Added Week 10 project design documentation, including Section 5 — API Integration Design, Section 6 — Concurrency Design, and Section 7 — Data Mining & Visualization Design. |
-| 1.0 | November 12, 2026 | **Ebrado & Ambuhot** <br> Section 3, 8, 9 & Appendix | Final compilation and polish — Week 11 |
+| 1.0 | November 12, 2026 | **Ebrado & Ambuhot** <br> Section 3, 8, 9 & Appendix | Final compilation and polish Week 08— Week 11 |
 
 
 
