@@ -65,26 +65,22 @@ DineSmart is a Java-based restaurant management system designed to help restaura
 TheMealDB is a public API that provides recipes from different cuisines, including meal names, categories, ingredients, cooking instructions, and images. DineSmart uses this API to search for meals, browse recipes by category, and retrieve recipe details for its menu management system.
 
 
-## 6. RISKS / OPEN QUESTIONS
 
-| No. | Risks | Questions |
-| --- | --- | --- |
-| 1 | TheMealDB API failure | What will happen if TheMealDB API is unavailable? |
-| 2 | Internet connection failure | Can the system still work without internet? |
-| 3 | Incorrect inventory updates | How will you prevent incorrect ingredient stock quantities? |
-| 4 | Insufficient ingredients | What happens if there is not enough stock for an order? |
-| 5 | Circular combo references | How will you prevent a combo from containing itself indirectly? |
-| 6 | Incorrect combo pricing | How will you calculate the price of nested combos accurately? |
-| 7 | Database corruption | What will you do if the SQLite database becomes corrupted? |
-| 8 | Data loss | How will you back up and restore restaurant records? |
-| 9 | Invalid user input | How will the system handle negative or zero quantities? |
-| 10 | Incorrect sales reports | How will you ensure that sales charts display accurate results? |
-| 11 | Cancelled orders | How will you ensure cancelled orders are excluded from sales reports? |
-| 12 | Menu price changes | What happens to previous orders when a menu item's price changes? |
-| 13 | Duplicate recipe imports | How will you prevent the same recipe from being imported more than once? |
-| 14 | Application crash | What happens if the application crashes while saving an order? |
-| 15 | Incorrect order processing | How will you ensure that kitchen orders follow FIFO (First-In, First-Out)? |
-| 16 | Incorrect order cancellation | How will you prevent completed orders from being cancelled accidentally? |
-| 17 | Database query errors | How will you prevent invalid or unsafe database operations? |
-| 18 | Testing failures | How will you verify that each feature works correctly before deployment? |
+## 6. Risks / Open Questions
+
+**Table 3: DineSmart Project Risks and Open Questions**
+
+| No. | Risks | Open Questions |
+|---|---|---|
+| 1 | API connection failures and unsuccessful recipe requests. | How can we retrieve recipes from TheMealDB and handle errors when the internet connection is unavailable? |
+| 2 | Incorrect or missing records in the SQLite database. | How can we ensure that customer orders, menu items, reservations, and inventory records are stored and updated correctly? |
+| 3 | Incorrect ingredient calculations, especially for shared ingredients. | How can we accurately calculate the total ingredients required for multiple orders? |
+| 4 | Improper processing of kitchen and pending orders. | How can we implement FIFO queues and LIFO stacks to manage orders efficiently? |
+| 5 | JavaFX interface freezing during long-running operations. | How can we keep the interface responsive while retrieving recipes, loading images, and generating reports? |
+| 6 | Undetected errors in system functions and database operations. | How can we verify that the system handles invalid inputs, inventory calculations, and database operations correctly? |
+| 7 | Unauthorized access to restricted system features. | How can we ensure that staff members can access only the features allowed for their assigned roles? |
+| 8 | Inaccurate ingredient stock levels after processing orders. | How can we automatically update ingredient stocks when customer orders are processed? |
+| 9 | Inaccurate analysis or presentation of restaurant sales and order records. | How can we analyze restaurant orders and display useful information through charts and sales reports? |
+| 10 | Integration errors between system components. | How can we ensure that the JavaFX interface, SQLite database, and restaurant management features work together correctly? |
+
 
