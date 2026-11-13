@@ -63,8 +63,6 @@ Revision History ---------------------------------------------------------------
 |---|---|---|---|
 | 0.1 | October 20, 2026; October 25, 2026 | **Group 5**; **Ambuhot** – Introduction; **Ebrado** – ER Sketch; **Yap** – Feature Checklist; **Del Rosario** – Task Split; **Hayag** – The Public API; **Lajot** – Risk/Questions | Initial draft. Completed the Week 8 project proposal, including the introduction, ER sketch, feature checklist, task split, public API, and risks/questions. |
 | 0.2 | October 26, 2026 | **Yap & Hayag** – Class Hierarchy Diagram/Description; **Ambuhot** – SRP Justification; **Ebrado** – Finalized ERD; **Del Rosario & Lajot** – Schema Description | Added Week 9 design and documentation sections, including the Class Hierarchy Diagram, SRP Justification, Finalized ERD, and Schema Description. |
-| 0.3 |  |  |  |
-| 1.0 |  |  |  |
 
 
 
