@@ -14,18 +14,50 @@ Project Design Document
 
 <br>
 
-| | |
-|---|---|
-| **Group Name / No.:** | Group 5 |
-| **Members:** | Kiro Del Rosario- Team Leader |
-| | Jamaica Ambuhot- Developer 1 |
-| | Janine Ebrado- Developer 2 |
-| | Josiela Yap- UI (User Interface) |
-| | Vincent Hayag- DB Admin |
-| | Ben Justin Lajot- QA (Quality Assurance) |
-| **Instructor:** | Richyll Son |
-| **Term:** | First Semester, S.Y. 2026-2027 |
-| **Document Version / Date:** | Ver 1.0 - November 14, 2026 |
+<table>
+  <tbody>
+    <tr>
+      <td valign="top" align="left"><strong>Group Name / No.:</strong></td>
+      <td valign="top" align="left">Group 5</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><strong>Members:</strong></td>
+      <td valign="top" align="left">Kiro Del Rosario - Team Leader</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td valign="top" align="left">Jamaica Ambuhot - Developer 1</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td valign="top" align="left">Janine Ebrado - Developer 2</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td valign="top" align="left">Josiela Yap - UI (User Interface)</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td valign="top" align="left">Vincent Hayag - DB Admin</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td valign="top" align="left">Ben Justin Lajot - QA (Quality Assurance)</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><strong>Instructor:</strong></td>
+      <td valign="top" align="left">Richyll Son</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><strong>Term:</strong></td>
+      <td valign="top" align="left">First Semester, S.Y. 2026-2027</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><strong>Document Version / Date:</strong></td>
+      <td valign="top" align="left">Ver 0.2 - October 26, 2026</td>
+    </tr>
+  </tbody>
+</table>
 
 <br>
 
