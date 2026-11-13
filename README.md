@@ -14,18 +14,50 @@ Project Design Document
 
 <br>
 
-| | |
-|---|---|
-| **Group Name / No.:** | Group 5 |
-| **Members:** | Kiro Del Rosario- Team Leader |
-| | Jamaica Ambuhot- Developer 1 |
-| | Janine Ebrado- Developer 2 |
-| | Josiela Yap- UI (User Interface) |
-| | Vincent Hayag- DB Admin |
-| | Ben Justin Lajot- QA (Quality Assurance) |
-| **Instructor:** | Richyll Son |
-| **Term:** | First Semester, S.Y. 2026-2027 |
-| **Document Version / Date:** | Ver 1.0 - November 14, 2026 |
+<table>
+  <tbody>
+    <tr>
+      <td valign="top" align="left"><strong>Group Name / No.:</strong></td>
+      <td valign="top" align="left">Group 5</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><strong>Members:</strong></td>
+      <td valign="top" align="left">Kiro Del Rosario - Team Leader</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td valign="top" align="left">Jamaica Ambuhot - Developer 1</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td valign="top" align="left">Janine Ebrado - Developer 2</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td valign="top" align="left">Josiela Yap - UI (User Interface)</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td valign="top" align="left">Vincent Hayag - DB Admin</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td valign="top" align="left">Ben Justin Lajot - QA (Quality Assurance)</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><strong>Instructor:</strong></td>
+      <td valign="top" align="left">Richyll Son</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><strong>Term:</strong></td>
+      <td valign="top" align="left">First Semester, S.Y. 2026-2027</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><strong>Document Version / Date:</strong></td>
+      <td valign="top" align="left">Ver 0.3 - November 03, 2026</td>
+    </tr>
+  </tbody>
+</table>
 
 <br>
 
@@ -77,17 +109,70 @@ Revision History ---------------------------------------------------------------
 
 
 
-## Revision History
+### Revision History
 
-**Table 1: Revision history**
+**Table 1: Revision History**
 
-| Version | Date | Author | Changes |
-|---|---|---|---|
-| 0.1 | October 20, 2026 | Group 5 | Initial draft |
-| | October 25, 2026 | **Ambuhot** - Introduction <br> **Ebrado** - ER Sketch <br> **Yap** - Feature Checklist <br> **Del Rosario** - Task Split <br> **Hayag** - The Public API <br> **Lajot** - Risk/Questions | Completed the Week 8 project proposal, including the introduction, ER sketch, feature checklist, task split, public API, and risks/questions. |
-| 0.2 | October 26, 2026 | **Yap & Hayag** - Class Hierarchy Diagram/Description <br> **Ambuhot** - SRP Justification <br> **Ebrado** - Finalized ERD <br> **Del Rosario & Lajot** - Schema Description | Added Week 9 design and documentation sections, including the Class Hierarchy Diagram, SRP Justification, Finalized ERD, and Schema Description. |
-| 0.3 | November 03, 2026 | **Ebrado & Ambuhot** <br> Section 5 — API Integration Design Written <br><br> **Yap & Hayag** <br> Section 6 — Concurrency Design Written <br><br> **Del Rosario & Lajot** <br> Section 7 — Data Mining & Visualization Design Written | Added Week 10 project design documentation, including Section 5 — API Integration Design, Section 6 — Concurrency Design, and Section 7 — Data Mining & Visualization Design. |
-| 1.0 | November 12, 2026 | **Ebrado & Ambuhot** <br> Section 3, 8, 9 & Appendix | Final compilation and polish — Week 11 |
+<table>
+  <thead>
+    <tr>
+      <th align="left">Version</th>
+      <th align="left">Date</th>
+      <th align="left">Author</th>
+      <th align="left">Changes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="2" valign="top" align="left">0.1</td>
+      <td valign="top" align="left">October 20, 2026</td>
+      <td valign="top" align="left">Group 5</td>
+      <td valign="top" align="left">Initial draft.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left">October 25, 2026</td>
+      <td valign="top" align="left">
+        <strong>Ambuhot</strong> – Introduction<br>
+        <strong>Ebrado</strong> – ER Sketch<br>
+        <strong>Yap</strong> – Feature Checklist<br>
+        <strong>Del Rosario</strong> – Task Split<br>
+        <strong>Hayag</strong> – The Public API<br>
+        <strong>Lajot</strong> – Risk/Questions
+      </td>
+      <td valign="top" align="left">
+        Completed the Week 8 project proposal, including the introduction, ER sketch, feature checklist, task split, public API, and risks/questions.
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="left">0.2</td>
+      <td valign="top" align="left">October 26, 2026</td>
+      <td valign="top" align="left">
+        <strong>Yap &amp; Hayag</strong> – Class Hierarchy Diagram/Description<br>
+        <strong>Ambuhot</strong> – SRP Justification<br>
+        <strong>Ebrado</strong> – Finalized ERD<br>
+        <strong>Del Rosario &amp; Lajot</strong> – Schema Description
+      </td>
+      <td valign="top" align="left">
+        Added Week 9 design and documentation sections, including the Class Hierarchy Diagram, SRP Justification, Finalized ERD, and Schema Description.
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="left">0.3</td>
+      <td valign="top" align="left">November 03, 2026</td>
+      <td valign="top" align="left">
+        <strong>Ebrado &amp; Ambuhot</strong><br>
+        Section 5 — API Integration Design Written<br><br>
+        <strong>Yap &amp; Hayag</strong><br>
+        Section 6 — Concurrency Design Written<br><br>
+        <strong>Del Rosario &amp; Lajot</strong><br>
+        Section 7 — Data Mining &amp; Visualization Design Written
+      </td>
+      <td valign="top" align="left">
+        Added Week 10 project design documentation, including Section 5 — API Integration Design, Section 6 — Concurrency Design, and Section 7 — Data Mining &amp; Visualization Design.
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 
 
