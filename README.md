@@ -37,52 +37,54 @@ Revision History ---------------------------------------------------------------
 **1. Introduction & Project Overview--------------------------------------------------------------------------1**
 
 **2. Preliminary ER Sketch & Team Roles ---------------------------------------------------------------------2**<br>
-&nbsp;&nbsp;&nbsp;&nbsp;2.1 Preliminary Entity-Relationship Sketch-----------------------------------------------------------------2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;2.1 Preliminary Entity-Relationship Sketch ----------------------------------------------------------------2<br>
 &nbsp;&nbsp;&nbsp;&nbsp;2.2 Team Roles----------------------------------------------------------------------------------------------3<br>
 
-**3. System Architecture & Object-Oriented Design---------------------------------------------------------3**<br>
-&nbsp;&nbsp;&nbsp;&nbsp;3.1 Class Hierarchy----------------------------------------------------------------------------------------3<br>
-&nbsp;&nbsp;&nbsp;&nbsp;3.2 Single Responsibility Principle (SRP)---------------------------------------------------------------------4<br>
-&nbsp;&nbsp;&nbsp;&nbsp;3.3 System Components--------------------------------------------------------------------------------------4<br>
-&nbsp;&nbsp;&nbsp;&nbsp;3.4 Design Rationale---------------------------------------------------------------------------------------4<br>
+**3. System Architecture & Object-Oriented Design ---------------------------------------------------------3**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;3.1 Class Hierarchy -----------------------------------------------------------------------------------------3<br>
+&nbsp;&nbsp;&nbsp;&nbsp;3.2 Single Responsibility Principle (SRP)-------------------------------------------------------------------4<br>
+&nbsp;&nbsp;&nbsp;&nbsp;3.3 System Components -----------------------------------------------------------------------------------4<br>
+&nbsp;&nbsp;&nbsp;&nbsp;3.4 Design Rationale ---------------------------------------------------------------------------------------4<br>
+&nbsp;&nbsp;&nbsp;&nbsp;3.5 Data Structure and Recursive Ingredient Calculation -------------------------------------------------5<br>
 
-**4. Data Model & Database Design---------------------------------------------------------------5**<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.1 Finalized Entity Relationship Sketch-------------------------------------------------5<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.2 Database Relationships and Cardinalities--------------------------------------------6<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.3 Actual SQLite Database Schema-------------------------------------------------------7<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.4 Database Design Explanation---------------------------------------------------------8<br>
 
-**5. API Integration Design---------------------------------------------------------------------8**<br>
-&nbsp;&nbsp;&nbsp;&nbsp;5.1 Public API Used--------------------------------------------------------------------8<br>
-&nbsp;&nbsp;&nbsp;&nbsp;5.2 API Endpoints-----------------------------------------------------------------------8<br>
-&nbsp;&nbsp;&nbsp;&nbsp;5.3 JSON Response Structure------------------------------------------------------------8<br>
+**4. Data Model & Database Design --------------------------------------------------------------------------6**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.1 Finalized Entity Relationship Sketch--------------------------------------------------------------------6<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.2 Database Relationships and Cardinalities--------------------------------------------------------------7<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.3 Actual SQLite Database Schema -----------------------------------------------------------------------8<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.4 Database Design Explanation --------------------------------------------------------------------------9<br>
 
-**6. Concurrency Design------------------------------------------------------------------------9**<br>
-&nbsp;&nbsp;&nbsp;&nbsp;6.1 Background Operations--------------------------------------------------------------9<br>
-&nbsp;&nbsp;&nbsp;&nbsp;6.2 Threading Approach-----------------------------------------------------------------9<br>
-&nbsp;&nbsp;&nbsp;&nbsp;6.3 Threading Process------------------------------------------------------------------9<br>
-&nbsp;&nbsp;&nbsp;&nbsp;6.4 Maintaining UI Responsiveness------------------------------------------------------10<br>
+**5. API Integration Design ------------------------------------------------------------------------------------9**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;5.1 Public API Used -----------------------------------------------------------------------------------------9<br>
+&nbsp;&nbsp;&nbsp;&nbsp;5.2 API Endpoints -------------------------------------------------------------------------------------------9<br>
+&nbsp;&nbsp;&nbsp;&nbsp;5.3 JSON Response Structure-------------------------------------------------------------------------------9<br>
 
-**7. Data Mining & Visualization Design--------------------------------------------------------10**<br>
-&nbsp;&nbsp;&nbsp;&nbsp;7.1 Data Mining Process---------------------------------------------------------------10<br>
-&nbsp;&nbsp;&nbsp;&nbsp;7.2 Data Aggregation Methods----------------------------------------------------------10<br>
-&nbsp;&nbsp;&nbsp;&nbsp;7.3 Charts Used-----------------------------------------------------------------------11<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7.3.1 Menu Category Frequency — Bar Chart---------------------------------------11<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7.3.2 Best-Selling Menu Items — Bar Chart---------------------------------------11<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7.3.3 Hourly Ordering Activity — Line Chart-------------------------------------12<br>
-&nbsp;&nbsp;&nbsp;&nbsp;7.4 Purpose of Data Visualization-----------------------------------------------------12<br>
+**6. Concurrency Design----------------------------------------------------------------------------------------10**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;6.1 Background Operations --------------------------------------------------------------------------------10<br>
+&nbsp;&nbsp;&nbsp;&nbsp;6.2 Threading Approach ------------------------------------------------------------------------------------10<br>
+&nbsp;&nbsp;&nbsp;&nbsp;6.3 Threading Process---------------------------------------------------------------------------------------10<br>
+&nbsp;&nbsp;&nbsp;&nbsp;6.4 Maintaining UI Responsiveness -------------------------------------------------------------------------11<br>
 
-**8. Testing Summary-------------------------------------------------------------------------13**<br>
-&nbsp;&nbsp;&nbsp;&nbsp;8.1 Unit Test Cases-------------------------------------------------------------------13<br>
-&nbsp;&nbsp;&nbsp;&nbsp;8.2 Testing Explanation---------------------------------------------------------------14<br>
+**7. Data Mining & Visualization Design -----------------------------------------------------------------------11**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;7.1 Data Mining Process-------------------------------------------------------------------------------------11<br>
+&nbsp;&nbsp;&nbsp;&nbsp;7.2 Data Aggregation Methods -----------------------------------------------------------------------------11<br>
+&nbsp;&nbsp;&nbsp;&nbsp;7.3 Charts Used ----------------------------------------------------------------------------------------------12<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7.3.1 Menu Category Frequency — Bar Chart------------------------------------------------------------12<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7.3.2 Best-Selling Menu Items — Bar Chart --------------------------------------------------------------12<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7.3.3 Hourly Ordering Activity — Line Chart--------------------------------------------------------------13<br>
+&nbsp;&nbsp;&nbsp;&nbsp;7.4 Purpose of Data Visualization----------------------------------------------------------------------------13<br>
 
-**9. Individual Contributions----------------------------------------------------------------14**<br>
-&nbsp;&nbsp;&nbsp;&nbsp;9.1 Team Member Contributions---------------------------------------------------------15<br>
+**8. Testing Summary --------------------------------------------------------------------------------------------14**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;8.1 Unit Test Cases--------------------------------------------------------------------------------------------14<br>
+&nbsp;&nbsp;&nbsp;&nbsp;8.2 Testing Explanation---------------------------------------------------------------------------------------15<br>
 
-**Appendix------------------------------------------------------------------------------------16**<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Appendix A. Development Tools and Technologies----------------------------------------16<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Appendix B. API Reference-------------------------------------------------------------16<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Appendix C. Supporting Documents-----------------------------------------------------16<br>
+**9. Individual Contributions ------------------------------------------------------------------------------------16**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;9.1 Team Member Contributions-----------------------------------------------------------------------------16<br>
+
+**Appendix--------------------------------------------------------------------------------------------------------17**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Appendix A. Development Tools and Technologies---------------------------------------------------------17<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Appendix B. API Reference-----------------------------------------------------------------------------------17<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Appendix C. Supporting Documents-------------------------------------------------------------------------17<br>
 
 
 
