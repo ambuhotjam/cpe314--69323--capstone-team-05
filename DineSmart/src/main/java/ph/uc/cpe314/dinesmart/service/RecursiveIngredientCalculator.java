@@ -105,3 +105,4 @@ public final class RecursiveIngredientCalculator {
         return calculateFrom(orderedItems, index + 1, totals);
     }
 }
+

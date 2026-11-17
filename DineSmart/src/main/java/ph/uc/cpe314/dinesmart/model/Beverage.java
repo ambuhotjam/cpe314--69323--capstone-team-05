@@ -11,3 +11,4 @@ public final class Beverage extends MenuItem {
         return "BEVERAGE";
     }
 }
+

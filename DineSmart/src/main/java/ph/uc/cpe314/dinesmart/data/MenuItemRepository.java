@@ -1,6 +1,7 @@
 
 package ph.uc.cpe314.dinesmart.data;
 
+package ph.uc.cpe314.dinesmart.data;
 import ph.uc.cpe314.dinesmart.model.MenuItem;
 
 import java.sql.Connection;

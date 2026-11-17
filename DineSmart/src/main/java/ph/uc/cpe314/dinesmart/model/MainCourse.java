@@ -11,3 +11,4 @@ public final class MainCourse extends MenuItem {
         return "MAIN_COURSE";
     }
 }
+

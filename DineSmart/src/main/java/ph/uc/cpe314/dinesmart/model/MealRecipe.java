@@ -17,3 +17,4 @@ public record MealRecipe(String id, String name, String category, String area,
                 + (area == null || area.isBlank() ? "" : " (" + area + ")");
     }
 }
+

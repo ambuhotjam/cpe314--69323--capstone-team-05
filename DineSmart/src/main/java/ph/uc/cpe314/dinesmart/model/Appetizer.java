@@ -11,3 +11,4 @@ public final class Appetizer extends MenuItem {
         return "APPETIZER";
     }
 }
+
