@@ -1,4 +1,5 @@
 package ph.uc.cpe314.dinesmart.data;
+
 import ph.uc.cpe314.dinesmart.model.MealRecipe;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

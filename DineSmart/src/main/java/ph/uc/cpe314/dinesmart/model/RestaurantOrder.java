@@ -1,4 +1,5 @@
 package ph.uc.cpe314.dinesmart.model;
+
 import java.time.LocalDateTime;
 import java.util.UUID;
 

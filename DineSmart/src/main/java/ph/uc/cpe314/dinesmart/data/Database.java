@@ -1,4 +1,5 @@
 package ph.uc.cpe314.dinesmart.data;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
